@@ -5,6 +5,6 @@ return require("telescope").register_extension({
 		vim.notify(vim.inspect(ext_config))
 	end,
 	exports = {
-		tailiscope = require("tailiscope")(),
+		tailiscope = require("tailiscope"),
 	},
 })

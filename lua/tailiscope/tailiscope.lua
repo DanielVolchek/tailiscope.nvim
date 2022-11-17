@@ -42,7 +42,7 @@ local open_doc = function(docfile, path)
 end
 
 -- picker
-return function(opts)
+local docs = function(opts)
 	opts = opts or {}
 	vim.notify("opts are ")
 	vim.notify(vim.inspect(opts))
@@ -85,3 +85,5 @@ return function(opts)
 		})
 		:find()
 end
+
+docs()
