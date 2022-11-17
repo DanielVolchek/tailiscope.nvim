@@ -8,7 +8,7 @@ local action_state = require("telescope.actions.state")
 local results = require("tailiscope.docs")
 
 -- https://stackoverflow.com/questions/295052/how-can-i-determine-the-os-of-the-system-from-within-a-lua-script
--- I don't have a windows machine to test this on, but it should work
+-- I haven't tested this outside of osx but it should work
 local getOperatingSystem = function()
 	local BinaryFormat = package.cpath:match("%p[\\|/]?%p(%a+)")
 	if BinaryFormat == "dll" then

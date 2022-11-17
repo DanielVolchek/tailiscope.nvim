@@ -48,42 +48,4 @@ with open(join(abspath(dirname(__file__)), outfile), 'w') as f:
         f.write('\t%s,\n' % page)
     f.write('}')
 
-# Generate command definitions in package.json
-# with open(join(abspath(dirname(__file__)), '../package.json'), 'r') as f:
-#     data = json.load(f)
-#     data['contributes']['commands'] = []
-#     data['activationEvents'] = []
-#
-#     for page in pages:
-#         data['activationEvents'].append(
-#             "onCommand:extension." + page['command'])
-#         data['contributes']['commands'].append({
-#             "command": "extension.{}".format(page['command']),
-#             "category": "Tailwind Docs",
-#             "title": page['topic'],
-#         })
-#
-# with open(join(abspath(dirname(__file__)), '../package.json'), 'w') as f:
-#     json.dump(data, f, indent=4)
-#
-# # Generate the extension.ts file
-# with open(join(abspath(dirname(__file__)), '../src/extension.ts'), 'w+') as f:
-#     f.write("'use strict';\n")
-#     f.write("import * as vscode from 'vscode';\n\n")
-#     f.write("export function activate(context: vscode.ExtensionContext) {\n\n")
-#
-#     for page in pages:
-#         f.write(
-#             '    let ' + page['command'] + ' = ' +
-#             'vscode.commands.registerCommand('
-#             + "'extension." + page['command'] + "', () => {\n"
-#             + "        vscode.commands.executeCommand('vscode.open', "
-#             + "vscode.Uri.parse('https://tailwindcss.com/docs/" + page['slug']
-#             + "'));\n"
-#             + "    });\n"
-#             + "    context.subscriptions.push(" + page['command'] + ");\n"
-#         )
-#
-#     f.write("\n}")
-#
 print('Extension files have been built.')
