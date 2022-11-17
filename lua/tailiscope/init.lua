@@ -1,1 +1,1 @@
-local tailiscope = require("tailiscope.tailiscope")
+return require("tailiscope.tailiscope")
