@@ -25,11 +25,11 @@ if client.name == "tailwindcss" then
 If you would like to change the path, you can do so like so
 ```
 require('telescope').setup({
-extensions = {
-  tailiscope = {
-    path = "http://localhost:3000/docs/"
+  extensions = {
+    tailiscope = {
+      path = "http://localhost:3000/docs/"
+    }
   }
-}
 })
 ```
 This is useful if you're hosting the docs on your own machine for whatever reason
@@ -39,14 +39,14 @@ I have included the nerdcave cheat sheet as an additional link. Same idea applie
 
 ```
 require('telescope').setup({
-extensions = {
-  tailiscope = {
-    cheatpath = "http://localhost:3000/"
+  extensions = {
+    tailiscope = {
+      cheatpath = "http://localhost:3000/"
+    }
   }
-}
 })
 ```
 
 ### Build tool
 The build tool for the links is hosted on build/build.py
-Full credit to [Auesten](https://github.com/austenc/vscode-tailwind-docs/blob/master/build/build.py) for it. 
+Full credit to [Austen](https://github.com/austenc/vscode-tailwind-docs/blob/master/build/build.py) for it. 
