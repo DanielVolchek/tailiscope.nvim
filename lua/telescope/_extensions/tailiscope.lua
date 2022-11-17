@@ -4,6 +4,5 @@ return require("telescope").register_extension({
 	end,
 	exports = {
 		tailiscope = require("tailiscope"),
-		tailwinddocs = require("tailiscope"),
 	},
 })

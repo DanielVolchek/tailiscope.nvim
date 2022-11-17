@@ -42,7 +42,7 @@ local open_doc = function(docfile, path)
 end
 
 -- picker
-local docs = function(opts)
+return function(opts)
 	opts = opts or {}
 	local cheat_opt = opts.cheatpath or "https://nerdcave.com/tailwind-cheat-sheet"
 	local path = opts.path or "https://tailwindcss.com/docs/"
