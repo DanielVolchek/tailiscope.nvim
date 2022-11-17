@@ -43,9 +43,9 @@ for page in pages:
 outfile = '../lua/tailiscope/docs.lua'
 with open(join(abspath(dirname(__file__)), outfile), 'w') as f:
     f.write('return {\n')
+    f.write('\t{"Cheat Sheet", "cheat-sheet"},\n')
     for page in parsedPages:
         f.write('\t%s,\n' % page)
-    f.write('\t{"Cheat Sheet", "cheat-sheet"},\n')
     f.write('}')
 
 # Generate command definitions in package.json

@@ -1,4 +1,5 @@
 return {
+	{"Cheat Sheet", "cheat-sheet"},
 	{"Accent Color", "accent-color"},
 	{"Adding Custom Styles", "adding-custom-styles"},
 	{"Align Content", "align-content"},
@@ -178,5 +179,4 @@ return {
 	{"Will Change", "will-change"},
 	{"Word Break", "word-break"},
 	{"Z Index", "z-index"},
-	{"Cheat Sheet", "cheat-sheet"},
 }
