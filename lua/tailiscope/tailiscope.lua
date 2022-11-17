@@ -44,6 +44,8 @@ end
 -- picker
 return function(opts)
 	opts = opts or {}
+	vim.notify("opts are ")
+	vim.notify(vim.inspect(opts))
 	local cheat_opt = opts.cheatpath or "https://nerdcave.com/tailwind-cheat-sheet"
 	local path = opts.path or "https://tailwindcss.com/docs/"
 	pickers
