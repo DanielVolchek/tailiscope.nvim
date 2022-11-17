@@ -83,6 +83,3 @@ local docs = function(opts)
 		})
 		:find()
 end
-
--- to execute the function
-docs()
