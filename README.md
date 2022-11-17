@@ -22,7 +22,7 @@ if client.name == "tailwindcss" then
 ```
 
 ## Config
-If you would like to change the path, you can do so like so
+If you would like to change the path, you can do so
 ```
 require('telescope').setup({
   extensions = {
