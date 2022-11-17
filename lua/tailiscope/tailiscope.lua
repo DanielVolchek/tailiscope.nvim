@@ -42,12 +42,10 @@ local open_doc = function(docfile, path)
 end
 
 -- picker
-local docs = function(opts)
+return function(opts)
 	opts = opts or {}
-	vim.notify("opts are ")
-	vim.notify(vim.inspect(opts))
-	local cheat_opt = opts.cheatpath or "https://nerdcave.com/tailwind-cheat-sheet"
-	local path = opts.path or "https://tailwindcss.com/docs/"
+	local cheat_opt = _G.tailiscope_config.cheatpath or "https://nerdcave.com/tailwind-cheat-sheet"
+	local path = _G.tailiscope_config.path or "https://tailwindcss.com/docs/"
 	pickers
 		.new(opts, {
 			prompt_title = "Tailiscope",
@@ -85,5 +83,3 @@ local docs = function(opts)
 		})
 		:find()
 end
-
-docs()
