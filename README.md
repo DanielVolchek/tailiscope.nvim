@@ -13,8 +13,8 @@ require('telescope').load_extension('tailiscope')
 ```
 You're done!
 Open it using :Telescope tailiscope
-Recommended:
-Setup in Lspconfig on attach
+
+If you'd like, you can setup in Lspconfig on attach like so
 ```
 if client.name == "tailwindcss" then
   require('telescope').load_extension('tailiscope')
