@@ -1,9 +1,10 @@
 # tailiscope-nvim
 
-Very simple telescope extension to open tailwind docs from Neovim. Inspired by [Tailwind Docs](https://github.com/austenc/vscode-tailwind-docs) for VSCode. 
+Very simple telescope extension to open tailwind docs from Neovim. Inspired by [Tailwind Docs](https://github.com/austenc/vscode-tailwind-docs) for VSCode.
 
 ## Setup
-Setup is equally simple 
+
+Setup is equally simple
 
 ```
 -- plugin setup
@@ -11,10 +12,12 @@ use("danielvolchek/tailiscope-nvim")
 -- anywhere else
 require('telescope').load_extension('tailiscope')
 ```
+
 You're done!
 Open it using :Telescope tailiscope
 
 If you'd like, you can setup in Lspconfig on attach like so
+
 ```
 if client.name == "tailwindcss" then
   require('telescope').load_extension('tailiscope')
@@ -22,7 +25,9 @@ if client.name == "tailwindcss" then
 ```
 
 ## Config
+
 If you would like to change the path, you can do so
+
 ```
 require('telescope').setup({
   extensions = {
@@ -32,9 +37,11 @@ require('telescope').setup({
   }
 })
 ```
+
 This is useful if you're hosting the docs on your own machine for whatever reason
 
 ### Cheatsheet
+
 I have included the nerdcave cheat sheet as an additional link. Same idea applies if you're hosting your own cheatsheet
 
 ```
@@ -48,5 +55,34 @@ require('telescope').setup({
 ```
 
 ### Build tool
+
 The build tool for the links is hosted on build/build.py
-Full credit to [Austen](https://github.com/austenc/vscode-tailwind-docs/blob/master/build/build.py) for it. 
+Full credit to [Austen](https://github.com/austenc/vscode-tailwind-docs/blob/master/build/build.py) for it.
+
+## Next
+
+Tailwind Cheatsheet
+
+### Should ->
+
+1. Get headers (layout,flex, etc...)
+   1. Include them as their own picker
+   1. Which will show all the subheaders in previewer
+   1. And will open the related picker
+1. Get subheaders
+   1. Which will show all the associated classes in the previewer
+   1. And have an option to open up the associated doc page with an alternate keypress
+   1. On open will go to another picker with a list of item
+1. Get list
+   1. Which will show a list of the actual tailwind class as value
+   1. And in preview show what the class is defined as
+   1. On open copy to configured buffer
+
+First thing to do is create selenium script for getting all the data from nerdcave
+script should
+
+1. get all divs
+2. check for correct header type
+3. get sub tag
+4. iterate through table
+5. Repeat for every div with header
