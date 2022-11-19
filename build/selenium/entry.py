@@ -23,17 +23,28 @@ def replace_char(str):
     return str
 
 
-def write_to_file(items):
-    path = os.path.join(doc_path, replace_char(items.name)+".lua")
-    with open(path, "w") as f:
-        f.write('{\n')
-        for i in items:
-            f.write(('\t{%s, %s\n}', i.name, replace_char(i.name)))
-    if (items.items):
-        write_to_file(items.items)
-    else:
-        f.write(('\t{%s, %s\n}', i.name, i.value))
-    f.write("}")
+# def write_to_file(items):
+#     print(items)
+#     path = os.path.join(doc_path, replace_char(items['name'])+".lua")
+#     print('Writing to file: ' + path)
+#     with open(path, "w") as f:
+#         f.write('{\n')
+#     if (items['items']):
+#         write_to_file(items['items'])
+#     f.write("}")
+
+
+def write_to_file(name, items):
+    if not isinstance(items, list):
+        return
+    for item in items:
+        write_to_file(item.name, item.items)
+        path = os.path.join(doc_path, replace_char(name)+".lua")
+        with open(path, "w") as f:
+            f.write('return {\n')
+            for i in items:
+                f.write(('\t{%s, %s\n}', i['name'], replace_char(i['name'])))
+            f.write("}")
 
 
 btns = driver.find_elements(By.CSS_SELECTOR, "button")
@@ -91,9 +102,6 @@ for c in containers:
     lis = c.find_elements(By.CSS_SELECTOR, 'li')
     innerCount = 0
     for li in lis:
-        if innerCount == 2:
-            break
-        innerCount += 1
         type = li.find_element(By.CSS_SELECTOR, 'span').text
         items[-1]['items'].append({'name': type, 'items': []})
 
@@ -109,6 +117,9 @@ for c in containers:
                 'name': tds[0].text,
                 'value': value,
             })
+            break
+        break
+    break
 
 # write files
 
