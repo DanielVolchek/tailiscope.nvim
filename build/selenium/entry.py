@@ -1,3 +1,4 @@
+import os
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
@@ -7,6 +8,32 @@ driver.get(link)
 
 # todo check if page is loadeds without waiting
 # driver.implicitly_wait(0.5)
+
+doc_path = os.path.join(".", "")
+
+
+def replace_char(str):
+    chars = [" ", "-", ":"]
+    temp = ""
+    for s in str:
+        c = s
+        if s in chars:
+            c = "_"
+        temp += c
+    return str
+
+
+def write_to_file(items):
+    path = os.path.join(doc_path, replace_char(items.name)+".lua")
+    with open(path, "w") as f:
+        f.write('{\n')
+        for i in items:
+            f.write(('\t{%s, %s\n}', i.name, replace_char(i.name)))
+    if (items.items):
+        write_to_file(items.items)
+    else:
+        f.write(('\t{%s, %s\n}', i.name, i.value))
+    f.write("}")
 
 
 btns = driver.find_elements(By.CSS_SELECTOR, "button")
@@ -21,46 +48,75 @@ containers = driver.find_elements(By.CSS_SELECTOR, 'div:has( > header)')
 
 items = []
 
+outerCount = 0
+# for c in containers:
+#     category = c.find_element(By.CSS_SELECTOR, 'header > h2').text
+#     items.append({'category': category, 'items': []})
+#
+#     if outerCount == 2:
+#         break
+#     outerCount += 1
+#
+#     lis = c.find_elements(By.CSS_SELECTOR, 'li')
+#     innerCount = 0
+#     for li in lis:
+#         if innerCount == 2:
+#             break
+#         innerCount += 1
+#         type = li.find_element(By.CSS_SELECTOR, 'span').text
+#         desc = li.find_element(By.CSS_SELECTOR, 'p').text
+#         link = li.find_element(By.CSS_SELECTOR, 'a').get_attribute('href')
+#         items[-1]['items'].append({'type': type, 'desc': desc, 'link': link, 'items': []})
+#         table = li.find_element(By.CSS_SELECTOR, 'table')
+#         trs = table.find_elements(By.CSS_SELECTOR, 'tr')
+#         print('table: ', type)
+#         for t in trs:
+#             tds = t.find_elements(By.CSS_SELECTOR, 'td')
+#             value = tds[1].text
+#             if tds[2] and tds[2].text != '':
+#                 value += '\t' + tds[2].text
+#             items[-1]['items'][-1]['items'].append({
+#                 'name': tds[0].text,
+#                 'value': value,
+#             })
+
 for c in containers:
     category = c.find_element(By.CSS_SELECTOR, 'header > h2').text
-    items.append({'category': category, 'items': []})
+    items.append({'name': category, 'items': []})
+
+    if outerCount == 2:
+        break
+    outerCount += 1
 
     lis = c.find_elements(By.CSS_SELECTOR, 'li')
+    innerCount = 0
     for li in lis:
+        if innerCount == 2:
+            break
+        innerCount += 1
         type = li.find_element(By.CSS_SELECTOR, 'span').text
-        desc = li.find_element(By.CSS_SELECTOR, 'p').text
-        link = li.find_element(By.CSS_SELECTOR, 'a').get_attribute('href')
-        items[-1]['items'].append({'type': type, 'desc': desc, 'link': link, 'items': []})
+        items[-1]['items'].append({'name': type, 'items': []})
+
         table = li.find_element(By.CSS_SELECTOR, 'table')
         trs = table.find_elements(By.CSS_SELECTOR, 'tr')
         print('table: ', type)
         for t in trs:
             tds = t.find_elements(By.CSS_SELECTOR, 'td')
+            value = tds[1].text
+            if tds[2] and tds[2].text != '':
+                value += '\t' + tds[2].text
             items[-1]['items'][-1]['items'].append({
                 'name': tds[0].text,
-                'value': tds[1].text,
-                'supp': tds[2].text,
+                'value': value,
             })
-    break
+
+# write files
 
 
-# {category, items: [type, desc, items: []]}
+if not os.path.exists(doc_path):
+    os.makedirs(doc_path)
+write_to_file(items)
 
-
-for t in items:
-    print('category: ')
-    print(t['category'])
-
-    cat = t['category']
-    with open(cat + '.lua', 'w') as f:
-        f.write
-    print('items: ')
-    for i in t['items']:
-        print(i['type'], ":", i['desc'])
-        print(i['link'])
-        for j in i['items']:
-            print(j['name'], " ", j['value'], " ", j['supp'])
-    break
 # for c in containers:
 #     category = c.find_element(By.TAG_NAME, 'h2')
 #     print(category.text)
