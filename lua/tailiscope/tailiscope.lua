@@ -8,8 +8,62 @@ local action_state = require("telescope.actions.state")
 
 local results = require("tailiscope.docs")
 
--- todo get rid
+local previewer = previewers.new_buffer_previewer({
+	define_preview = function(self, entry, status)
+		local bufnr = self.state.bufnr
+		for i, v in ipairs(table) do
+			vim.api.nvim_buf_set_lines(bufnr, i - 1, i - 1, false, { v })
+		end
+		vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, {})
+	end,
+})
+
 _G.tailiscope_config = tailiscope_config or {}
+
+local picker = function(filename, opts)
+	print("In picker")
+	results = require("lua.tailiscope.docs." .. filename)
+	print("passed results")
+	opts = opts or {}
+	pickers
+		.new(opts, {
+			previewer = previewer,
+			prompt_title = "Tailiscope",
+			finder = finders.new_table({
+				results = results,
+				entry_maker = function(entry)
+					return {
+						value = entry,
+						display = entry[1],
+						ordinal = entry[1],
+					}
+				end,
+			}),
+
+			layout_config = {
+				width = 0.5,
+				height = 0.75,
+			},
+
+			sorter = conf.generic_sorter(opts),
+			attach_mappings = function(prompt_bufnr, map)
+				actions.select_default:replace(function()
+					actions.close(prompt_bufnr)
+					local selection = action_state.get_selected_entry()
+					selection.value[2]()
+				end)
+				return true
+			end,
+		})
+		:find()
+end
+
+_G.recursive_picker = function(filename)
+	print("filename: " .. filename)
+	picker(filename, {})
+end
+
+_G.paste = function(value) end
 
 -- https://stackoverflow.com/questions/295052/how-can-i-determine-the-os-of-the-system-from-within-a-lua-script
 -- I haven't tested this outside of osx but it should work
@@ -46,86 +100,81 @@ local open_doc = function(docfile, path)
 end
 
 -- picker
-local previewer = previewers.new_buffer_previewer({
-	define_preview = function(self, entry, status)
-		local bufnr = self.state.bufnr
-		vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { entry.value[1] })
-	end,
-})
 
-local recursive_picker = function(opts)
-	opts = opts or {}
-	pickers.new(opts, {
-		previewer = previewer,
-		prompt_title = "Tailiscope",
-		finder = finders
-			.new_table({
-				results = results,
-				entry_maker = function(entry)
-					return {
-						value = entry,
-						display = entry[1],
-						ordinal = entry[1],
-					}
-				end,
+-- local recursive_picker = function(opts)
+-- 	opts = opts or {}
+-- 	pickers.new(opts, {
+-- 		previewer = previewer,
+-- 		prompt_title = "Tailiscope",
+-- 		finder = finders
+-- 			.new_table({
+-- 				results = results,
+-- 				entry_maker = function(entry)
+-- 					return {
+-- 						value = entry,
+-- 						display = entry[1],
+-- 						ordinal = entry[1],
+-- 					}
+-- 				end,
+--
+-- 				sorter = conf.generic_sorter(opts),
+-- 				attach_mappings = function(prompt_bufnr, map)
+-- 					actions.select_default:replace(function()
+-- 						actions.close(prompt_bufnr)
+-- 						local selection = action_state.get_selected_entry()
+-- 						local doc = selection.value[2]
+-- 						selection.value[2]()
+-- 					end)
+-- 					return true
+-- 				end,
+-- 			})
+-- 			:find(),
+-- 	})
+-- end
+--
+-- local picker = function(opts)
+-- 	opts = opts or {}
+-- 	local cheat_opt = _G.tailiscope_config.cheatpath or "https://nerdcave.com/tailwind-cheat-sheet"
+-- 	local path = _G.tailiscope_config.path or "https://tailwindcss.com/docs/"
+-- 	pickers
+-- 		.new(opts, {
+-- 			previewer = previewer,
+-- 			prompt_title = "Tailiscope",
+-- 			finder = finders.new_table({
+-- 				results = results,
+-- 				entry_maker = function(entry)
+-- 					return {
+-- 						value = entry,
+-- 						display = entry[1],
+-- 						ordinal = entry[1],
+-- 					}
+-- 				end,
+-- 			}),
+--
+-- 			layout_config = {
+-- 				width = 0.5,
+-- 				height = 0.75,
+-- 			},
+--
+-- 			sorter = conf.generic_sorter(opts),
+-- 			attach_mappings = function(prompt_bufnr, map)
+-- 				actions.select_default:replace(function()
+-- 					actions.close(prompt_bufnr)
+-- 					local _path = path
+-- 					local selection = action_state.get_selected_entry()
+-- 					local doc = selection.value[2]
+-- 					if doc == "cheat-sheet" then
+-- 						_path = cheat_opt
+-- 						doc = ""
+-- 					end
+-- 					open_doc(doc, _path)
+-- 				end)
+-- 				return true
+-- 			end,
+-- 		})
+-- 		:find()
+-- end
+--
 
-				sorter = conf.generic_sorter(opts),
-				attach_mappings = function(prompt_bufnr, map)
-					actions.select_default:replace(function()
-						actions.close(prompt_bufnr)
-						local selection = action_state.get_selected_entry()
-						local doc = selection.value[2]
-						selection.value[2]()
-					end)
-					return true
-				end,
-			})
-			:find(),
-	})
-end
-
-local picker = function(opts)
-	opts = opts or {}
-	local cheat_opt = _G.tailiscope_config.cheatpath or "https://nerdcave.com/tailwind-cheat-sheet"
-	local path = _G.tailiscope_config.path or "https://tailwindcss.com/docs/"
-	pickers
-		.new(opts, {
-			previewer = previewer,
-			prompt_title = "Tailiscope",
-			finder = finders.new_table({
-				results = results,
-				entry_maker = function(entry)
-					return {
-						value = entry,
-						display = entry[1],
-						ordinal = entry[1],
-					}
-				end,
-			}),
-
-			layout_config = {
-				width = 0.5,
-				height = 0.75,
-			},
-
-			sorter = conf.generic_sorter(opts),
-			attach_mappings = function(prompt_bufnr, map)
-				actions.select_default:replace(function()
-					actions.close(prompt_bufnr)
-					local _path = path
-					local selection = action_state.get_selected_entry()
-					local doc = selection.value[2]
-					if doc == "cheat-sheet" then
-						_path = cheat_opt
-						doc = ""
-					end
-					open_doc(doc, _path)
-				end)
-				return true
-			end,
-		})
-		:find()
-end
-
-picker()
+recursive_picker("layout")
 return picker

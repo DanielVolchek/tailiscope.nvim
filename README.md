@@ -86,3 +86,14 @@ script should
 3. get sub tag
 4. iterate through table
 5. Repeat for every div with header
+
+Next is to figure out how to format the data
+current ideas are
+
+1.  - function() recursive("processed_filename") end
+    - function() paste("classname") end
+2.
+
+- "filename", "base = true" doc = "x"
+
+leaning towards 2 rn so we can have better checking for doc and classname

@@ -9,7 +9,7 @@ driver.get(link)
 # todo check if page is loadeds without waiting
 # driver.implicitly_wait(0.5)
 
-doc_path = os.path.join(".", "")
+doc_path = os.path.join("../../lua/tailiscope", "docs/")
 
 
 def replace_char(str):
@@ -20,7 +20,7 @@ def replace_char(str):
         if s in chars:
             c = "_"
         temp += c
-    return str
+    return temp
 
 
 # def write_to_file(items):
@@ -35,16 +35,20 @@ def replace_char(str):
 
 
 def write_to_file(name, items):
-    if not isinstance(items, list):
-        return
-    for item in items:
-        write_to_file(item.name, item.items)
-        path = os.path.join(doc_path, replace_char(name)+".lua")
-        with open(path, "w") as f:
-            f.write('return {\n')
-            for i in items:
-                f.write(('\t{%s, %s\n}', i['name'], replace_char(i['name'])))
-            f.write("}")
+
+    path = os.path.join(doc_path, replace_char(name)+".lua")
+    with open(path, "w") as f:
+        f.write('return {\n')
+        for item in items:
+            value = ""
+            if item.get('items') is not None:
+                write_to_file(item['name'], item['items'])
+                value = 'recursive_picker(%s) ' % replace_char(item['name'])
+            else:
+                value = "paste('%s')" % item['value']
+            write = "\t{'%s', %s},\n" % (item['name'], value)
+            f.write(write)
+        f.write('}')
 
 
 btns = driver.find_elements(By.CSS_SELECTOR, "button")
@@ -95,13 +99,16 @@ for c in containers:
     category = c.find_element(By.CSS_SELECTOR, 'header > h2').text
     items.append({'name': category, 'items': []})
 
-    if outerCount == 2:
+    if outerCount == 3:
         break
     outerCount += 1
 
     lis = c.find_elements(By.CSS_SELECTOR, 'li')
     innerCount = 0
     for li in lis:
+        if innerCount == 3:
+            break
+        innerCount += 1
         type = li.find_element(By.CSS_SELECTOR, 'span').text
         items[-1]['items'].append({'name': type, 'items': []})
 
@@ -117,16 +124,15 @@ for c in containers:
                 'name': tds[0].text,
                 'value': value,
             })
-            break
-        break
-    break
-
 # write files
 
 
 if not os.path.exists(doc_path):
     os.makedirs(doc_path)
-write_to_file(items)
+
+for item in items:
+    write_to_file(item['name'], item['items'])
+
 
 # for c in containers:
 #     category = c.find_element(By.TAG_NAME, 'h2')
