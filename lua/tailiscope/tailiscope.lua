@@ -20,6 +20,10 @@ local previewer = previewers.new_buffer_previewer({
 
 _G.tailiscope_config = tailiscope_config or {}
 
+_G.paste = function(value)
+	vim.notify("value is " .. value)
+end
+
 local picker = function(filename, opts)
 	print("In picker")
 	results = require("lua.tailiscope.docs." .. filename)
@@ -50,7 +54,15 @@ local picker = function(filename, opts)
 				actions.select_default:replace(function()
 					actions.close(prompt_bufnr)
 					local selection = action_state.get_selected_entry()
-					selection.value[2]()
+					vim.notify(vim.inspect(selection))
+					local fn = selection.value.fn
+					if fn == paste then
+						print("in paste")
+						selection.value.fn(selection.value[1])
+					else
+						print("in else")
+						selection.value.fn(selection.value[2])
+					end
 				end)
 				return true
 			end,
@@ -62,8 +74,6 @@ _G.recursive_picker = function(filename)
 	print("filename: " .. filename)
 	picker(filename, {})
 end
-
-_G.paste = function(value) end
 
 -- https://stackoverflow.com/questions/295052/how-can-i-determine-the-os-of-the-system-from-within-a-lua-script
 -- I haven't tested this outside of osx but it should work
@@ -176,5 +186,5 @@ end
 -- end
 --
 
-recursive_picker("layout")
+recursive_picker("spacing")
 return picker

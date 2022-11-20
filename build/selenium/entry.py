@@ -6,9 +6,6 @@ link = "https://nerdcave.com/tailwind-cheat-sheet"
 driver = webdriver.Chrome()
 driver.get(link)
 
-# todo check if page is loadeds without waiting
-# driver.implicitly_wait(0.5)
-
 doc_path = os.path.join("../../lua/tailiscope", "docs/")
 
 
@@ -20,21 +17,10 @@ def replace_char(str):
         if s in chars:
             c = "_"
         temp += c
-    return temp
+    return temp.lower().replace("\n", " ")
 
 
-# def write_to_file(items):
-#     print(items)
-#     path = os.path.join(doc_path, replace_char(items['name'])+".lua")
-#     print('Writing to file: ' + path)
-#     with open(path, "w") as f:
-#         f.write('{\n')
-#     if (items['items']):
-#         write_to_file(items['items'])
-#     f.write("}")
-
-
-def write_to_file(name, items):
+def recursive_write(name, items):
 
     path = os.path.join(doc_path, replace_char(name)+".lua")
     with open(path, "w") as f:
@@ -42,10 +28,13 @@ def write_to_file(name, items):
         for item in items:
             value = ""
             if item.get('items') is not None:
-                write_to_file(item['name'], item['items'])
-                value = 'recursive_picker(%s) ' % replace_char(item['name'])
+                # if the item has sub items write them with the same name as the current item
+                recursive_write(item['name'], item['items'])
+                value = "'%s', fn=recursive_picker" % replace_char(item['name'])
             else:
-                value = "paste('%s')" % item['value']
+                value = "'%s', fn=paste" % replace_char(item['value'])
+            if item.get('doc') is not None:
+                value += ", doc='%s'" % item['doc']
             write = "\t{'%s', %s},\n" % (item['name'], value)
             f.write(write)
         f.write('}')
@@ -110,8 +99,8 @@ for c in containers:
             break
         innerCount += 1
         type = li.find_element(By.CSS_SELECTOR, 'span').text
-        items[-1]['items'].append({'name': type, 'items': []})
-
+        link = li.find_element(By.CSS_SELECTOR, 'a').get_attribute('href')
+        items[-1]['items'].append({'name': type, 'items': [], 'doc': link})
         table = li.find_element(By.CSS_SELECTOR, 'table')
         trs = table.find_elements(By.CSS_SELECTOR, 'tr')
         print('table: ', type)
@@ -126,37 +115,9 @@ for c in containers:
             })
 # write files
 
-
 if not os.path.exists(doc_path):
     os.makedirs(doc_path)
 
-for item in items:
-    write_to_file(item['name'], item['items'])
+recursive_write('base', items)
 
-
-# for c in containers:
-#     category = c.find_element(By.TAG_NAME, 'h2')
-#     print(category.text)
-#
-# print("---")
-#
-# containers2 = driver.find_elements(locate_with(By.TAG_NAME, 'div')
-#                                    .above({By.TAG_NAME, 'h2'}))
-#
-# for c in containers2:
-#     category = c.find_element(By.TAG_NAME, 'h2')
-#     print(category.text)
-
-#
-# categories = []
-#
-# for h in headers:
-#     categories.append(h.text)
-#
-#
-#
-#
-#
-#
-# # expandbtn = driver.find_element(by=By.CSS_SELECTOR, value=".btn.btn-blue.w-5/6")
-#
+print("done")
