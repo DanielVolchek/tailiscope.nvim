@@ -30,9 +30,11 @@ def recursive_write(name, items):
             if item.get('items') is not None:
                 # if the item has sub items write them with the same name as the current item
                 recursive_write(item['name'], item['items'])
-                value = "'%s', fn=recursive_picker" % replace_char(item['name'])
+                # value = "'%s', fn=recursive_picker" % replace_char(item['name'])
+                value = "'%s'" % replace_char(item['name'])
             else:
-                value = "'%s', fn=paste" % replace_char(item['value'])
+                # value = "'%s', base=true, fn=paste" % replace_char(item['value'])
+                value = "'%s', base=true" % replace_char(item['value'])
             if item.get('doc') is not None:
                 value += ", doc='%s'" % item['doc']
             write = "\t{'%s', %s},\n" % (item['name'], value)

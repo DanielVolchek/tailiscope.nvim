@@ -1,5 +1,5 @@
 return {
-	{'.bg-fixed', paste('background-attachment: fixed;')},
-	{'.bg-local', paste('background-attachment: local;')},
-	{'.bg-scroll', paste('background-attachment: scroll;')},
+	{'.bg-fixed', 'background_attachment__fixed;', base=true, fn=paste},
+	{'.bg-local', 'background_attachment__local;', base=true, fn=paste},
+	{'.bg-scroll', 'background_attachment__scroll;', base=true, fn=paste},
 }

@@ -94,6 +94,6 @@ current ideas are
     - function() paste("classname") end
 2.
 
-- "filename", "base = true" doc = "x"
+- "function", "filename", doc = "x"
 
 leaning towards 2 rn so we can have better checking for doc and classname

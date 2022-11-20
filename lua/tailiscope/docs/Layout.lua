@@ -1,22 +1,5 @@
-print("loading layout")
-
 return {
-	{
-		"Breakpoints",
-		function()
-			recursive_picker("layout")
-		end,
-	},
-	-- {
-	-- 	"box-decoration-break",
-	-- 	function()
-	-- 		recursive_picker("box_decoration_break")
-	-- 	end,
-	-- },
-	-- {
-	-- 	"container",
-	-- 	function()
-	-- 		recursive_picker("container")
-	-- 	end,
-	-- },
+	{'Breakpoints', 'breakpoints', fn=recursive_picker, doc='https://tailwindcss.com/docs/responsive-design'},
+	{'box-decoration-break', 'box_decoration_break', fn=recursive_picker, doc='https://tailwindcss.com/docs/box-decoration-break'},
+	{'container', 'container', fn=recursive_picker, doc='https://tailwindcss.com/docs/container'},
 }

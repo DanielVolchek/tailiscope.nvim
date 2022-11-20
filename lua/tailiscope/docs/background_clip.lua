@@ -1,7 +1,6 @@
 return {
-	{'.bg-clip-border', paste('background-clip: border-box;')},
-	{'.bg-clip-padding', paste('background-clip: padding-box;')},
-	{'.bg-clip-content', paste('background-clip: content-box;')},
-	{'.bg-clip-text', paste('-webkit-background-clip: text;
-background-clip: text;')},
+	{'.bg-clip-border', 'background_clip__border_box;', base=true, fn=paste},
+	{'.bg-clip-padding', 'background_clip__padding_box;', base=true, fn=paste},
+	{'.bg-clip-content', 'background_clip__content_box;', base=true, fn=paste},
+	{'.bg-clip-text', '_webkit_background_clip__text; background_clip__text;', base=true, fn=paste},
 }

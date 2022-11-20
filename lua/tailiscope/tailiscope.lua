@@ -8,31 +8,32 @@ local action_state = require("telescope.actions.state")
 
 local results = require("tailiscope.docs")
 
-local previewer = previewers.new_buffer_previewer({
-	define_preview = function(self, entry, status)
-		local bufnr = self.state.bufnr
-		for i, v in ipairs(table) do
-			vim.api.nvim_buf_set_lines(bufnr, i - 1, i - 1, false, { v })
-		end
-		vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, {})
-	end,
-})
-
 _G.tailiscope_config = tailiscope_config or {}
 
 _G.paste = function(value)
-	vim.notify("value is " .. value)
+	-- vim.notify("value is " .. value)
 end
+
+local history = {}
+local table_results = nil
+
+local previewer = previewers.new_buffer_previewer({
+	define_preview = function(self, entry, status)
+		local bufnr = self.state.bufnr
+		table_results = require("lua.tailiscope.docs." .. entry.value[2])
+	end,
+})
 
 local picker = function(filename, opts)
 	print("In picker")
-	results = require("lua.tailiscope.docs." .. filename)
+	results = table_results or require("lua.tailiscope.docs." .. filename)
 	print("passed results")
 	opts = opts or {}
 	pickers
 		.new(opts, {
 			previewer = previewer,
-			prompt_title = "Tailiscope",
+			prompt_title = "Search",
+			results_title = filename,
 			finder = finders.new_table({
 				results = results,
 				entry_maker = function(entry)
@@ -45,23 +46,30 @@ local picker = function(filename, opts)
 			}),
 
 			layout_config = {
-				width = 0.5,
+				width = 0.75,
 				height = 0.75,
 			},
 
 			sorter = conf.generic_sorter(opts),
 			attach_mappings = function(prompt_bufnr, map)
+				map("n", "b", function()
+					actions.close(prompt_bufnr)
+					if next(history) ~= nil then
+						vim.notify(vim.inspect(history))
+						recursive_picker(table.remove(history))
+					end
+					return true
+				end)
+
 				actions.select_default:replace(function()
 					actions.close(prompt_bufnr)
 					local selection = action_state.get_selected_entry()
-					vim.notify(vim.inspect(selection))
 					local fn = selection.value.fn
-					if fn == paste then
-						print("in paste")
-						selection.value.fn(selection.value[1])
+					if selection.value.base then
+						paste(selection.value[1])
 					else
-						print("in else")
-						selection.value.fn(selection.value[2])
+						table.insert(history, filename)
+						recursive_picker(selection.value[2])
 					end
 				end)
 				return true
@@ -186,5 +194,5 @@ end
 -- end
 --
 
-recursive_picker("spacing")
+recursive_picker("base")
 return picker

@@ -1,8 +1,8 @@
 return {
-	{'.container', paste('none	width: 100%;')},
-	{' ', paste('sm:	max-width: 640px;')},
-	{' ', paste('md:	max-width: 768px;')},
-	{' ', paste('lg:	max-width: 1024px;')},
-	{' ', paste('xl:	max-width: 1280px;')},
-	{' ', paste('2xl:	max-width: 1536px;')},
+	{'.container', 'none	width__100%;', base=true, fn=paste},
+	{' ', 'sm_	max_width__640px;', base=true, fn=paste},
+	{' ', 'md_	max_width__768px;', base=true, fn=paste},
+	{' ', 'lg_	max_width__1024px;', base=true, fn=paste},
+	{' ', 'xl_	max_width__1280px;', base=true, fn=paste},
+	{' ', '2xl_	max_width__1536px;', base=true, fn=paste},
 }

@@ -1,168 +1,86 @@
 return {
-	{'.bg-transparent', paste('background-color: transparent;')},
-	{'.bg-current', paste('background-color: currentColor;')},
-	{'.bg-black', paste('--tw-bg-opacity: 1;
-background-color: rgba(0, 0, 0, var(--tw-bg-opacity));')},
-	{'.bg-white', paste('--tw-bg-opacity: 1;
-background-color: rgba(255, 255, 255, var(--tw-bg-opacity));')},
-	{'.bg-gray-50', paste('--tw-bg-opacity: 1;
-background-color: rgba(249, 250, 251, var(--tw-bg-opacity));')},
-	{'.bg-gray-100', paste('--tw-bg-opacity: 1;
-background-color: rgba(243, 244, 246, var(--tw-bg-opacity));')},
-	{'.bg-gray-200', paste('--tw-bg-opacity: 1;
-background-color: rgba(229, 231, 235, var(--tw-bg-opacity));')},
-	{'.bg-gray-300', paste('--tw-bg-opacity: 1;
-background-color: rgba(209, 213, 219, var(--tw-bg-opacity));')},
-	{'.bg-gray-400', paste('--tw-bg-opacity: 1;
-background-color: rgba(156, 163, 175, var(--tw-bg-opacity));')},
-	{'.bg-gray-500', paste('--tw-bg-opacity: 1;
-background-color: rgba(107, 114, 128, var(--tw-bg-opacity));')},
-	{'.bg-gray-600', paste('--tw-bg-opacity: 1;
-background-color: rgba(75, 85, 99, var(--tw-bg-opacity));')},
-	{'.bg-gray-700', paste('--tw-bg-opacity: 1;
-background-color: rgba(55, 65, 81, var(--tw-bg-opacity));')},
-	{'.bg-gray-800', paste('--tw-bg-opacity: 1;
-background-color: rgba(31, 41, 55, var(--tw-bg-opacity));')},
-	{'.bg-gray-900', paste('--tw-bg-opacity: 1;
-background-color: rgba(17, 24, 39, var(--tw-bg-opacity));')},
-	{'.bg-red-50', paste('--tw-bg-opacity: 1;
-background-color: rgba(254, 242, 242, var(--tw-bg-opacity));')},
-	{'.bg-red-100', paste('--tw-bg-opacity: 1;
-background-color: rgba(254, 226, 226, var(--tw-bg-opacity));')},
-	{'.bg-red-200', paste('--tw-bg-opacity: 1;
-background-color: rgba(254, 202, 202, var(--tw-bg-opacity));')},
-	{'.bg-red-300', paste('--tw-bg-opacity: 1;
-background-color: rgba(252, 165, 165, var(--tw-bg-opacity));')},
-	{'.bg-red-400', paste('--tw-bg-opacity: 1;
-background-color: rgba(248, 113, 113, var(--tw-bg-opacity));')},
-	{'.bg-red-500', paste('--tw-bg-opacity: 1;
-background-color: rgba(239, 68, 68, var(--tw-bg-opacity));')},
-	{'.bg-red-600', paste('--tw-bg-opacity: 1;
-background-color: rgba(220, 38, 38, var(--tw-bg-opacity));')},
-	{'.bg-red-700', paste('--tw-bg-opacity: 1;
-background-color: rgba(185, 28, 28, var(--tw-bg-opacity));')},
-	{'.bg-red-800', paste('--tw-bg-opacity: 1;
-background-color: rgba(153, 27, 27, var(--tw-bg-opacity));')},
-	{'.bg-red-900', paste('--tw-bg-opacity: 1;
-background-color: rgba(127, 29, 29, var(--tw-bg-opacity));')},
-	{'.bg-yellow-50', paste('--tw-bg-opacity: 1;
-background-color: rgba(255, 251, 235, var(--tw-bg-opacity));')},
-	{'.bg-yellow-100', paste('--tw-bg-opacity: 1;
-background-color: rgba(254, 243, 199, var(--tw-bg-opacity));')},
-	{'.bg-yellow-200', paste('--tw-bg-opacity: 1;
-background-color: rgba(253, 230, 138, var(--tw-bg-opacity));')},
-	{'.bg-yellow-300', paste('--tw-bg-opacity: 1;
-background-color: rgba(252, 211, 77, var(--tw-bg-opacity));')},
-	{'.bg-yellow-400', paste('--tw-bg-opacity: 1;
-background-color: rgba(251, 191, 36, var(--tw-bg-opacity));')},
-	{'.bg-yellow-500', paste('--tw-bg-opacity: 1;
-background-color: rgba(245, 158, 11, var(--tw-bg-opacity));')},
-	{'.bg-yellow-600', paste('--tw-bg-opacity: 1;
-background-color: rgba(217, 119, 6, var(--tw-bg-opacity));')},
-	{'.bg-yellow-700', paste('--tw-bg-opacity: 1;
-background-color: rgba(180, 83, 9, var(--tw-bg-opacity));')},
-	{'.bg-yellow-800', paste('--tw-bg-opacity: 1;
-background-color: rgba(146, 64, 14, var(--tw-bg-opacity));')},
-	{'.bg-yellow-900', paste('--tw-bg-opacity: 1;
-background-color: rgba(120, 53, 15, var(--tw-bg-opacity));')},
-	{'.bg-green-50', paste('--tw-bg-opacity: 1;
-background-color: rgba(236, 253, 245, var(--tw-bg-opacity));')},
-	{'.bg-green-100', paste('--tw-bg-opacity: 1;
-background-color: rgba(209, 250, 229, var(--tw-bg-opacity));')},
-	{'.bg-green-200', paste('--tw-bg-opacity: 1;
-background-color: rgba(167, 243, 208, var(--tw-bg-opacity));')},
-	{'.bg-green-300', paste('--tw-bg-opacity: 1;
-background-color: rgba(110, 231, 183, var(--tw-bg-opacity));')},
-	{'.bg-green-400', paste('--tw-bg-opacity: 1;
-background-color: rgba(52, 211, 153, var(--tw-bg-opacity));')},
-	{'.bg-green-500', paste('--tw-bg-opacity: 1;
-background-color: rgba(16, 185, 129, var(--tw-bg-opacity));')},
-	{'.bg-green-600', paste('--tw-bg-opacity: 1;
-background-color: rgba(5, 150, 105, var(--tw-bg-opacity));')},
-	{'.bg-green-700', paste('--tw-bg-opacity: 1;
-background-color: rgba(4, 120, 87, var(--tw-bg-opacity));')},
-	{'.bg-green-800', paste('--tw-bg-opacity: 1;
-background-color: rgba(6, 95, 70, var(--tw-bg-opacity));')},
-	{'.bg-green-900', paste('--tw-bg-opacity: 1;
-background-color: rgba(6, 78, 59, var(--tw-bg-opacity));')},
-	{'.bg-blue-50', paste('--tw-bg-opacity: 1;
-background-color: rgba(239, 246, 255, var(--tw-bg-opacity));')},
-	{'.bg-blue-100', paste('--tw-bg-opacity: 1;
-background-color: rgba(219, 234, 254, var(--tw-bg-opacity));')},
-	{'.bg-blue-200', paste('--tw-bg-opacity: 1;
-background-color: rgba(191, 219, 254, var(--tw-bg-opacity));')},
-	{'.bg-blue-300', paste('--tw-bg-opacity: 1;
-background-color: rgba(147, 197, 253, var(--tw-bg-opacity));')},
-	{'.bg-blue-400', paste('--tw-bg-opacity: 1;
-background-color: rgba(96, 165, 250, var(--tw-bg-opacity));')},
-	{'.bg-blue-500', paste('--tw-bg-opacity: 1;
-background-color: rgba(59, 130, 246, var(--tw-bg-opacity));')},
-	{'.bg-blue-600', paste('--tw-bg-opacity: 1;
-background-color: rgba(37, 99, 235, var(--tw-bg-opacity));')},
-	{'.bg-blue-700', paste('--tw-bg-opacity: 1;
-background-color: rgba(29, 78, 216, var(--tw-bg-opacity));')},
-	{'.bg-blue-800', paste('--tw-bg-opacity: 1;
-background-color: rgba(30, 64, 175, var(--tw-bg-opacity));')},
-	{'.bg-blue-900', paste('--tw-bg-opacity: 1;
-background-color: rgba(30, 58, 138, var(--tw-bg-opacity));')},
-	{'.bg-indigo-50', paste('--tw-bg-opacity: 1;
-background-color: rgba(238, 242, 255, var(--tw-bg-opacity));')},
-	{'.bg-indigo-100', paste('--tw-bg-opacity: 1;
-background-color: rgba(224, 231, 255, var(--tw-bg-opacity));')},
-	{'.bg-indigo-200', paste('--tw-bg-opacity: 1;
-background-color: rgba(199, 210, 254, var(--tw-bg-opacity));')},
-	{'.bg-indigo-300', paste('--tw-bg-opacity: 1;
-background-color: rgba(165, 180, 252, var(--tw-bg-opacity));')},
-	{'.bg-indigo-400', paste('--tw-bg-opacity: 1;
-background-color: rgba(129, 140, 248, var(--tw-bg-opacity));')},
-	{'.bg-indigo-500', paste('--tw-bg-opacity: 1;
-background-color: rgba(99, 102, 241, var(--tw-bg-opacity));')},
-	{'.bg-indigo-600', paste('--tw-bg-opacity: 1;
-background-color: rgba(79, 70, 229, var(--tw-bg-opacity));')},
-	{'.bg-indigo-700', paste('--tw-bg-opacity: 1;
-background-color: rgba(67, 56, 202, var(--tw-bg-opacity));')},
-	{'.bg-indigo-800', paste('--tw-bg-opacity: 1;
-background-color: rgba(55, 48, 163, var(--tw-bg-opacity));')},
-	{'.bg-indigo-900', paste('--tw-bg-opacity: 1;
-background-color: rgba(49, 46, 129, var(--tw-bg-opacity));')},
-	{'.bg-purple-50', paste('--tw-bg-opacity: 1;
-background-color: rgba(245, 243, 255, var(--tw-bg-opacity));')},
-	{'.bg-purple-100', paste('--tw-bg-opacity: 1;
-background-color: rgba(237, 233, 254, var(--tw-bg-opacity));')},
-	{'.bg-purple-200', paste('--tw-bg-opacity: 1;
-background-color: rgba(221, 214, 254, var(--tw-bg-opacity));')},
-	{'.bg-purple-300', paste('--tw-bg-opacity: 1;
-background-color: rgba(196, 181, 253, var(--tw-bg-opacity));')},
-	{'.bg-purple-400', paste('--tw-bg-opacity: 1;
-background-color: rgba(167, 139, 250, var(--tw-bg-opacity));')},
-	{'.bg-purple-500', paste('--tw-bg-opacity: 1;
-background-color: rgba(139, 92, 246, var(--tw-bg-opacity));')},
-	{'.bg-purple-600', paste('--tw-bg-opacity: 1;
-background-color: rgba(124, 58, 237, var(--tw-bg-opacity));')},
-	{'.bg-purple-700', paste('--tw-bg-opacity: 1;
-background-color: rgba(109, 40, 217, var(--tw-bg-opacity));')},
-	{'.bg-purple-800', paste('--tw-bg-opacity: 1;
-background-color: rgba(91, 33, 182, var(--tw-bg-opacity));')},
-	{'.bg-purple-900', paste('--tw-bg-opacity: 1;
-background-color: rgba(76, 29, 149, var(--tw-bg-opacity));')},
-	{'.bg-pink-50', paste('--tw-bg-opacity: 1;
-background-color: rgba(253, 242, 248, var(--tw-bg-opacity));')},
-	{'.bg-pink-100', paste('--tw-bg-opacity: 1;
-background-color: rgba(252, 231, 243, var(--tw-bg-opacity));')},
-	{'.bg-pink-200', paste('--tw-bg-opacity: 1;
-background-color: rgba(251, 207, 232, var(--tw-bg-opacity));')},
-	{'.bg-pink-300', paste('--tw-bg-opacity: 1;
-background-color: rgba(249, 168, 212, var(--tw-bg-opacity));')},
-	{'.bg-pink-400', paste('--tw-bg-opacity: 1;
-background-color: rgba(244, 114, 182, var(--tw-bg-opacity));')},
-	{'.bg-pink-500', paste('--tw-bg-opacity: 1;
-background-color: rgba(236, 72, 153, var(--tw-bg-opacity));')},
-	{'.bg-pink-600', paste('--tw-bg-opacity: 1;
-background-color: rgba(219, 39, 119, var(--tw-bg-opacity));')},
-	{'.bg-pink-700', paste('--tw-bg-opacity: 1;
-background-color: rgba(190, 24, 93, var(--tw-bg-opacity));')},
-	{'.bg-pink-800', paste('--tw-bg-opacity: 1;
-background-color: rgba(157, 23, 77, var(--tw-bg-opacity));')},
-	{'.bg-pink-900', paste('--tw-bg-opacity: 1;
-background-color: rgba(131, 24, 67, var(--tw-bg-opacity));')},
+	{'.bg-transparent', 'background_color__transparent;', base=true, fn=paste},
+	{'.bg-current', 'background_color__currentcolor;', base=true, fn=paste},
+	{'.bg-black', '__tw_bg_opacity__1; background_color__rgba(0,_0,_0,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-white', '__tw_bg_opacity__1; background_color__rgba(255,_255,_255,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-gray-50', '__tw_bg_opacity__1; background_color__rgba(249,_250,_251,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-gray-100', '__tw_bg_opacity__1; background_color__rgba(243,_244,_246,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-gray-200', '__tw_bg_opacity__1; background_color__rgba(229,_231,_235,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-gray-300', '__tw_bg_opacity__1; background_color__rgba(209,_213,_219,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-gray-400', '__tw_bg_opacity__1; background_color__rgba(156,_163,_175,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-gray-500', '__tw_bg_opacity__1; background_color__rgba(107,_114,_128,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-gray-600', '__tw_bg_opacity__1; background_color__rgba(75,_85,_99,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-gray-700', '__tw_bg_opacity__1; background_color__rgba(55,_65,_81,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-gray-800', '__tw_bg_opacity__1; background_color__rgba(31,_41,_55,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-gray-900', '__tw_bg_opacity__1; background_color__rgba(17,_24,_39,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-red-50', '__tw_bg_opacity__1; background_color__rgba(254,_242,_242,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-red-100', '__tw_bg_opacity__1; background_color__rgba(254,_226,_226,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-red-200', '__tw_bg_opacity__1; background_color__rgba(254,_202,_202,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-red-300', '__tw_bg_opacity__1; background_color__rgba(252,_165,_165,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-red-400', '__tw_bg_opacity__1; background_color__rgba(248,_113,_113,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-red-500', '__tw_bg_opacity__1; background_color__rgba(239,_68,_68,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-red-600', '__tw_bg_opacity__1; background_color__rgba(220,_38,_38,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-red-700', '__tw_bg_opacity__1; background_color__rgba(185,_28,_28,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-red-800', '__tw_bg_opacity__1; background_color__rgba(153,_27,_27,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-red-900', '__tw_bg_opacity__1; background_color__rgba(127,_29,_29,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-yellow-50', '__tw_bg_opacity__1; background_color__rgba(255,_251,_235,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-yellow-100', '__tw_bg_opacity__1; background_color__rgba(254,_243,_199,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-yellow-200', '__tw_bg_opacity__1; background_color__rgba(253,_230,_138,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-yellow-300', '__tw_bg_opacity__1; background_color__rgba(252,_211,_77,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-yellow-400', '__tw_bg_opacity__1; background_color__rgba(251,_191,_36,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-yellow-500', '__tw_bg_opacity__1; background_color__rgba(245,_158,_11,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-yellow-600', '__tw_bg_opacity__1; background_color__rgba(217,_119,_6,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-yellow-700', '__tw_bg_opacity__1; background_color__rgba(180,_83,_9,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-yellow-800', '__tw_bg_opacity__1; background_color__rgba(146,_64,_14,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-yellow-900', '__tw_bg_opacity__1; background_color__rgba(120,_53,_15,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-green-50', '__tw_bg_opacity__1; background_color__rgba(236,_253,_245,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-green-100', '__tw_bg_opacity__1; background_color__rgba(209,_250,_229,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-green-200', '__tw_bg_opacity__1; background_color__rgba(167,_243,_208,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-green-300', '__tw_bg_opacity__1; background_color__rgba(110,_231,_183,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-green-400', '__tw_bg_opacity__1; background_color__rgba(52,_211,_153,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-green-500', '__tw_bg_opacity__1; background_color__rgba(16,_185,_129,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-green-600', '__tw_bg_opacity__1; background_color__rgba(5,_150,_105,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-green-700', '__tw_bg_opacity__1; background_color__rgba(4,_120,_87,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-green-800', '__tw_bg_opacity__1; background_color__rgba(6,_95,_70,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-green-900', '__tw_bg_opacity__1; background_color__rgba(6,_78,_59,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-blue-50', '__tw_bg_opacity__1; background_color__rgba(239,_246,_255,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-blue-100', '__tw_bg_opacity__1; background_color__rgba(219,_234,_254,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-blue-200', '__tw_bg_opacity__1; background_color__rgba(191,_219,_254,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-blue-300', '__tw_bg_opacity__1; background_color__rgba(147,_197,_253,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-blue-400', '__tw_bg_opacity__1; background_color__rgba(96,_165,_250,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-blue-500', '__tw_bg_opacity__1; background_color__rgba(59,_130,_246,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-blue-600', '__tw_bg_opacity__1; background_color__rgba(37,_99,_235,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-blue-700', '__tw_bg_opacity__1; background_color__rgba(29,_78,_216,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-blue-800', '__tw_bg_opacity__1; background_color__rgba(30,_64,_175,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-blue-900', '__tw_bg_opacity__1; background_color__rgba(30,_58,_138,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-indigo-50', '__tw_bg_opacity__1; background_color__rgba(238,_242,_255,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-indigo-100', '__tw_bg_opacity__1; background_color__rgba(224,_231,_255,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-indigo-200', '__tw_bg_opacity__1; background_color__rgba(199,_210,_254,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-indigo-300', '__tw_bg_opacity__1; background_color__rgba(165,_180,_252,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-indigo-400', '__tw_bg_opacity__1; background_color__rgba(129,_140,_248,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-indigo-500', '__tw_bg_opacity__1; background_color__rgba(99,_102,_241,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-indigo-600', '__tw_bg_opacity__1; background_color__rgba(79,_70,_229,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-indigo-700', '__tw_bg_opacity__1; background_color__rgba(67,_56,_202,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-indigo-800', '__tw_bg_opacity__1; background_color__rgba(55,_48,_163,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-indigo-900', '__tw_bg_opacity__1; background_color__rgba(49,_46,_129,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-purple-50', '__tw_bg_opacity__1; background_color__rgba(245,_243,_255,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-purple-100', '__tw_bg_opacity__1; background_color__rgba(237,_233,_254,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-purple-200', '__tw_bg_opacity__1; background_color__rgba(221,_214,_254,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-purple-300', '__tw_bg_opacity__1; background_color__rgba(196,_181,_253,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-purple-400', '__tw_bg_opacity__1; background_color__rgba(167,_139,_250,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-purple-500', '__tw_bg_opacity__1; background_color__rgba(139,_92,_246,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-purple-600', '__tw_bg_opacity__1; background_color__rgba(124,_58,_237,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-purple-700', '__tw_bg_opacity__1; background_color__rgba(109,_40,_217,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-purple-800', '__tw_bg_opacity__1; background_color__rgba(91,_33,_182,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-purple-900', '__tw_bg_opacity__1; background_color__rgba(76,_29,_149,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-pink-50', '__tw_bg_opacity__1; background_color__rgba(253,_242,_248,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-pink-100', '__tw_bg_opacity__1; background_color__rgba(252,_231,_243,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-pink-200', '__tw_bg_opacity__1; background_color__rgba(251,_207,_232,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-pink-300', '__tw_bg_opacity__1; background_color__rgba(249,_168,_212,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-pink-400', '__tw_bg_opacity__1; background_color__rgba(244,_114,_182,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-pink-500', '__tw_bg_opacity__1; background_color__rgba(236,_72,_153,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-pink-600', '__tw_bg_opacity__1; background_color__rgba(219,_39,_119,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-pink-700', '__tw_bg_opacity__1; background_color__rgba(190,_24,_93,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-pink-800', '__tw_bg_opacity__1; background_color__rgba(157,_23,_77,_var(__tw_bg_opacity));', base=true, fn=paste},
+	{'.bg-pink-900', '__tw_bg_opacity__1; background_color__rgba(131,_24,_67,_var(__tw_bg_opacity));', base=true, fn=paste},
 }

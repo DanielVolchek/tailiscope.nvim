@@ -1,5 +1,5 @@
 return {
-	{'padding', recursive_picker(padding) },
-	{'margin', recursive_picker(margin) },
-	{'space between', recursive_picker(space_between) },
+	{'padding', 'padding', fn=recursive_picker, doc='https://tailwindcss.com/docs/padding'},
+	{'margin', 'margin', fn=recursive_picker, doc='https://tailwindcss.com/docs/margin'},
+	{'space between', 'space_between', fn=recursive_picker, doc='https://tailwindcss.com/docs/space'},
 }
