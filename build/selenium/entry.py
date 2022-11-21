@@ -6,11 +6,12 @@ link = "https://nerdcave.com/tailwind-cheat-sheet"
 driver = webdriver.Chrome()
 driver.get(link)
 
+
 doc_path = os.path.join("../../lua/tailiscope", "docs/")
 
 
 def replace_char(str):
-    chars = [" ", "-", ":"]
+    chars = [" ", "-", ":", ",", "/"]
     temp = ""
     for s in str:
         c = s
@@ -53,8 +54,6 @@ for b in btns:
 containers = driver.find_elements(By.CSS_SELECTOR, 'div:has( > header)')
 
 items = []
-
-outerCount = 0
 # for c in containers:
 #     category = c.find_element(By.CSS_SELECTOR, 'header > h2').text
 #     items.append({'category': category, 'items': []})
@@ -90,16 +89,8 @@ for c in containers:
     category = c.find_element(By.CSS_SELECTOR, 'header > h2').text
     items.append({'name': category, 'items': []})
 
-    if outerCount == 3:
-        break
-    outerCount += 1
-
     lis = c.find_elements(By.CSS_SELECTOR, 'li')
-    innerCount = 0
     for li in lis:
-        if innerCount == 3:
-            break
-        innerCount += 1
         type = li.find_element(By.CSS_SELECTOR, 'span').text
         link = li.find_element(By.CSS_SELECTOR, 'a').get_attribute('href')
         items[-1]['items'].append({'name': type, 'items': [], 'doc': link})
