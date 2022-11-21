@@ -4,6 +4,8 @@ return require("telescope").register_extension({
 		_G.tailiscope_config = ext_config
 	end,
 	exports = {
-		tailiscope = require("tailiscope"),
+		tailiscope = function()
+			require("tailiscope")("base")
+		end,
 	},
 })
