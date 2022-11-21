@@ -1,0 +1,17 @@
+return {
+	{'.bg-opacity-0', '__tw_bg_opacity__0;', base=true},
+	{'.bg-opacity-5', '__tw_bg_opacity__0.05;', base=true},
+	{'.bg-opacity-10', '__tw_bg_opacity__0.1;', base=true},
+	{'.bg-opacity-20', '__tw_bg_opacity__0.2;', base=true},
+	{'.bg-opacity-25', '__tw_bg_opacity__0.25;', base=true},
+	{'.bg-opacity-30', '__tw_bg_opacity__0.3;', base=true},
+	{'.bg-opacity-40', '__tw_bg_opacity__0.4;', base=true},
+	{'.bg-opacity-50', '__tw_bg_opacity__0.5;', base=true},
+	{'.bg-opacity-60', '__tw_bg_opacity__0.6;', base=true},
+	{'.bg-opacity-70', '__tw_bg_opacity__0.7;', base=true},
+	{'.bg-opacity-75', '__tw_bg_opacity__0.75;', base=true},
+	{'.bg-opacity-80', '__tw_bg_opacity__0.8;', base=true},
+	{'.bg-opacity-90', '__tw_bg_opacity__0.9;', base=true},
+	{'.bg-opacity-95', '__tw_bg_opacity__0.95;', base=true},
+	{'.bg-opacity-100', '__tw_bg_opacity__1;', base=true},
+}

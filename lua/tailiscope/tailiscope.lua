@@ -20,14 +20,22 @@ local table_results = nil
 local previewer = previewers.new_buffer_previewer({
 	define_preview = function(self, entry, status)
 		local bufnr = self.state.bufnr
-		table_results = require("lua.tailiscope.docs." .. entry.value[2])
+		if entry.value.base then
+			vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { entry.value[2] })
+		else
+			table_results = require("lua.tailiscope.docs." .. entry.value[2])
+			local temp = {}
+			for i, v in ipairs(table_results) do
+				table.insert(temp, v[1])
+			end
+			vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, temp)
+		end
 	end,
 })
 
 local picker = function(filename, opts)
-	print("In picker")
-	results = table_results or require("lua.tailiscope.docs." .. filename)
-	print("passed results")
+	-- results = table_results or require("lua.tailiscope.docs." .. filename)
+	results = require("lua.tailiscope.docs." .. filename)
 	opts = opts or {}
 	pickers
 		.new(opts, {
@@ -53,6 +61,15 @@ local picker = function(filename, opts)
 			sorter = conf.generic_sorter(opts),
 			attach_mappings = function(prompt_bufnr, map)
 				map("n", "b", function()
+					if next(history) ~= nil then
+						actions.close(prompt_bufnr)
+						vim.notify(vim.inspect(history))
+						recursive_picker(table.remove(history))
+					end
+					return true
+				end)
+
+				map("i", "<c-b>", function()
 					actions.close(prompt_bufnr)
 					if next(history) ~= nil then
 						vim.notify(vim.inspect(history))
@@ -64,7 +81,6 @@ local picker = function(filename, opts)
 				actions.select_default:replace(function()
 					actions.close(prompt_bufnr)
 					local selection = action_state.get_selected_entry()
-					local fn = selection.value.fn
 					if selection.value.base then
 						paste(selection.value[1])
 					else
@@ -79,7 +95,6 @@ local picker = function(filename, opts)
 end
 
 _G.recursive_picker = function(filename)
-	print("filename: " .. filename)
 	picker(filename, {})
 end
 

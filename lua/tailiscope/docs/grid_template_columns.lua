@@ -1,0 +1,15 @@
+return {
+	{'.grid-cols-1', 'grid_template_columns__repeat(1__minmax(0__1fr));', base=true},
+	{'.grid-cols-2', 'grid_template_columns__repeat(2__minmax(0__1fr));', base=true},
+	{'.grid-cols-3', 'grid_template_columns__repeat(3__minmax(0__1fr));', base=true},
+	{'.grid-cols-4', 'grid_template_columns__repeat(4__minmax(0__1fr));', base=true},
+	{'.grid-cols-5', 'grid_template_columns__repeat(5__minmax(0__1fr));', base=true},
+	{'.grid-cols-6', 'grid_template_columns__repeat(6__minmax(0__1fr));', base=true},
+	{'.grid-cols-7', 'grid_template_columns__repeat(7__minmax(0__1fr));', base=true},
+	{'.grid-cols-8', 'grid_template_columns__repeat(8__minmax(0__1fr));', base=true},
+	{'.grid-cols-9', 'grid_template_columns__repeat(9__minmax(0__1fr));', base=true},
+	{'.grid-cols-10', 'grid_template_columns__repeat(10__minmax(0__1fr));', base=true},
+	{'.grid-cols-11', 'grid_template_columns__repeat(11__minmax(0__1fr));', base=true},
+	{'.grid-cols-12', 'grid_template_columns__repeat(12__minmax(0__1fr));', base=true},
+	{'.grid-cols-none', 'grid_template_columns__none;', base=true},
+}

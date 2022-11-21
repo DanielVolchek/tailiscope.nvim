@@ -1,0 +1,17 @@
+return {
+	{'.ring-opacity-0', '__tw_ring_opacity__0;', base=true},
+	{'.ring-opacity-5', '__tw_ring_opacity__0.05;', base=true},
+	{'.ring-opacity-10', '__tw_ring_opacity__0.1;', base=true},
+	{'.ring-opacity-20', '__tw_ring_opacity__0.2;', base=true},
+	{'.ring-opacity-25', '__tw_ring_opacity__0.25;', base=true},
+	{'.ring-opacity-30', '__tw_ring_opacity__0.3;', base=true},
+	{'.ring-opacity-40', '__tw_ring_opacity__0.4;', base=true},
+	{'.ring-opacity-50', '__tw_ring_opacity__0.5;', base=true},
+	{'.ring-opacity-60', '__tw_ring_opacity__0.6;', base=true},
+	{'.ring-opacity-70', '__tw_ring_opacity__0.7;', base=true},
+	{'.ring-opacity-75', '__tw_ring_opacity__0.75;', base=true},
+	{'.ring-opacity-80', '__tw_ring_opacity__0.8;', base=true},
+	{'.ring-opacity-90', '__tw_ring_opacity__0.9;', base=true},
+	{'.ring-opacity-95', '__tw_ring_opacity__0.95;', base=true},
+	{'.ring-opacity-100', '__tw_ring_opacity__1;', base=true},
+}

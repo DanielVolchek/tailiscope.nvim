@@ -1,0 +1,18 @@
+return {
+	{'.mix-blend-normal', 'mix_blend_mode__normal;', base=true},
+	{'.mix-blend-multiply', 'mix_blend_mode__multiply;', base=true},
+	{'.mix-blend-screen', 'mix_blend_mode__screen;', base=true},
+	{'.mix-blend-overlay', 'mix_blend_mode__overlay;', base=true},
+	{'.mix-blend-darken', 'mix_blend_mode__darken;', base=true},
+	{'.mix-blend-lighten', 'mix_blend_mode__lighten;', base=true},
+	{'.mix-blend-color-dodge', 'mix_blend_mode__color_dodge;', base=true},
+	{'.mix-blend-color-burn', 'mix_blend_mode__color_burn;', base=true},
+	{'.mix-blend-hard-light', 'mix_blend_mode__hard_light;', base=true},
+	{'.mix-blend-soft-light', 'mix_blend_mode__soft_light;', base=true},
+	{'.mix-blend-difference', 'mix_blend_mode__difference;', base=true},
+	{'.mix-blend-exclusion', 'mix_blend_mode__exclusion;', base=true},
+	{'.mix-blend-hue', 'mix_blend_mode__hue;', base=true},
+	{'.mix-blend-saturation', 'mix_blend_mode__saturation;', base=true},
+	{'.mix-blend-color', 'mix_blend_mode__color;', base=true},
+	{'.mix-blend-luminosity', 'mix_blend_mode__luminosity;', base=true},
+}

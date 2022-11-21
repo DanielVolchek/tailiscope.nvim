@@ -1,0 +1,18 @@
+return {
+	{'.bg-blend-normal', 'background_blend_mode__normal;', base=true},
+	{'.bg-blend-multiply', 'background_blend_mode__multiply;', base=true},
+	{'.bg-blend-screen', 'background_blend_mode__screen;', base=true},
+	{'.bg-blend-overlay', 'background_blend_mode__overlay;', base=true},
+	{'.bg-blend-darken', 'background_blend_mode__darken;', base=true},
+	{'.bg-blend-lighten', 'background_blend_mode__lighten;', base=true},
+	{'.bg-blend-color-dodge', 'background_blend_mode__color_dodge;', base=true},
+	{'.bg-blend-color-burn', 'background_blend_mode__color_burn;', base=true},
+	{'.bg-blend-hard-light', 'background_blend_mode__hard_light;', base=true},
+	{'.bg-blend-soft-light', 'background_blend_mode__soft_light;', base=true},
+	{'.bg-blend-difference', 'background_blend_mode__difference;', base=true},
+	{'.bg-blend-exclusion', 'background_blend_mode__exclusion;', base=true},
+	{'.bg-blend-hue', 'background_blend_mode__hue;', base=true},
+	{'.bg-blend-saturation', 'background_blend_mode__saturation;', base=true},
+	{'.bg-blend-color', 'background_blend_mode__color;', base=true},
+	{'.bg-blend-luminosity', 'background_blend_mode__luminosity;', base=true},
+}

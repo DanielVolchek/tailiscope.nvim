@@ -1,0 +1,4 @@
+return {
+	{'.backdrop-filter', '_webkit_backdrop_filter__var(__tw_backdrop_blur)_var(__tw_backdrop_brightness)_var(__tw_backdrop_contrast)_var(__tw_backdrop_grayscale)_var(__tw_backdrop_hue_rotate)_var(__tw_backdrop_invert)_var(__tw_backdrop_opacity)_var(__tw_backdrop_saturate)_var(__tw_backdrop_sepia); backdrop_filter__var(__tw_backdrop_blur)_var(__tw_backdrop_brightness)_var(__tw_backdrop_contrast)_var(__tw_backdrop_grayscale)_var(__tw_backdrop_hue_rotate)_var(__tw_backdrop_invert)_var(__tw_backdrop_opacity)_var(__tw_backdrop_saturate)_var(__tw_backdrop_sepia);', base=true},
+	{'.backdrop-filter-none', '_webkit_backdrop_filter__none; backdrop_filter__none;', base=true},
+}

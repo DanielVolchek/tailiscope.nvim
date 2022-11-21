@@ -1,0 +1,17 @@
+return {
+	{'.divide-opacity-0 > *', '__tw_divide_opacity__0;', base=true},
+	{'.divide-opacity-5 > *', '__tw_divide_opacity__0.05;', base=true},
+	{'.divide-opacity-10 > *', '__tw_divide_opacity__0.1;', base=true},
+	{'.divide-opacity-20 > *', '__tw_divide_opacity__0.2;', base=true},
+	{'.divide-opacity-25 > *', '__tw_divide_opacity__0.25;', base=true},
+	{'.divide-opacity-30 > *', '__tw_divide_opacity__0.3;', base=true},
+	{'.divide-opacity-40 > *', '__tw_divide_opacity__0.4;', base=true},
+	{'.divide-opacity-50 > *', '__tw_divide_opacity__0.5;', base=true},
+	{'.divide-opacity-60 > *', '__tw_divide_opacity__0.6;', base=true},
+	{'.divide-opacity-70 > *', '__tw_divide_opacity__0.7;', base=true},
+	{'.divide-opacity-75 > *', '__tw_divide_opacity__0.75;', base=true},
+	{'.divide-opacity-80 > *', '__tw_divide_opacity__0.8;', base=true},
+	{'.divide-opacity-90 > *', '__tw_divide_opacity__0.9;', base=true},
+	{'.divide-opacity-95 > *', '__tw_divide_opacity__0.95;', base=true},
+	{'.divide-opacity-100 > *', '__tw_divide_opacity__1;', base=true},
+}
