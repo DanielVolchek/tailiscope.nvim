@@ -14,6 +14,40 @@ _G.paste = function(value)
 	-- vim.notify("value is " .. value)
 end
 
+-- https://stackoverflow.com/questions/295052/how-can-i-determine-the-os-of-the-system-from-within-a-lua-script
+-- I haven't tested this outside of osx but it should work
+local getOperatingSystem = function()
+	local BinaryFormat = package.cpath:match("%p[\\|/]?%p(%a+)")
+	if BinaryFormat == "dll" then
+		function os.name()
+			return "Windows"
+		end
+	elseif BinaryFormat == "so" then
+		function os.name()
+			return "Linux"
+		end
+	elseif BinaryFormat == "dylib" then
+		function os.name()
+			return "MacOS"
+		end
+	end
+	BinaryFormat = nil
+end
+
+local open_doc = function(docfile, path)
+	path = path or "https://tailwindcss.com/docs/"
+	docfile = docfile or "index"
+	local prefix = 'open "'
+	local _os = getOperatingSystem()
+	if _os == "Windows" then
+		prefix = 'start "'
+	elseif _os == "Linux" then
+		prefix = 'xdg-open "'
+	end
+	local command = prefix .. path .. docfile .. '"'
+	os.execute(command)
+end
+
 local history = {}
 local table_results = nil
 
@@ -45,9 +79,13 @@ local picker = function(filename, opts)
 			finder = finders.new_table({
 				results = results,
 				entry_maker = function(entry)
+					local display = entry[1]
+					if entry.doc then
+						display = display .. " "
+					end
 					return {
 						value = entry,
-						display = entry[1],
+						display = display,
 						ordinal = entry[1],
 					}
 				end,
@@ -60,6 +98,15 @@ local picker = function(filename, opts)
 
 			sorter = conf.generic_sorter(opts),
 			attach_mappings = function(prompt_bufnr, map)
+				map("n", "od", function()
+					local selection = action_state.get_selected_entry()
+					if selection.value.doc then
+						open_doc(selection.value.doc, "")
+					end
+
+					return true
+				end)
+
 				map("n", "b", function()
 					if next(history) ~= nil then
 						actions.close(prompt_bufnr)
@@ -96,40 +143,6 @@ end
 
 _G.recursive_picker = function(filename)
 	picker(filename, {})
-end
-
--- https://stackoverflow.com/questions/295052/how-can-i-determine-the-os-of-the-system-from-within-a-lua-script
--- I haven't tested this outside of osx but it should work
-local getOperatingSystem = function()
-	local BinaryFormat = package.cpath:match("%p[\\|/]?%p(%a+)")
-	if BinaryFormat == "dll" then
-		function os.name()
-			return "Windows"
-		end
-	elseif BinaryFormat == "so" then
-		function os.name()
-			return "Linux"
-		end
-	elseif BinaryFormat == "dylib" then
-		function os.name()
-			return "MacOS"
-		end
-	end
-	BinaryFormat = nil
-end
-
-local open_doc = function(docfile, path)
-	path = path or "https://tailwindcss.com/docs/"
-	docfile = docfile or "index"
-	local prefix = 'open "'
-	local _os = getOperatingSystem()
-	if _os == "Windows" then
-		prefix = 'start "'
-	elseif _os == "Linux" then
-		prefix = 'xdg-open "'
-	end
-	local command = prefix .. path .. docfile .. '"'
-	os.execute(command)
 end
 
 -- picker
