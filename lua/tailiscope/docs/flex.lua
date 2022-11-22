@@ -1,6 +1,6 @@
 return {
-	{'.flex-1', 'flex__1_1_0%;', base=true},
-	{'.flex-auto', 'flex__1_1_auto;', base=true},
-	{'.flex-initial', 'flex__0_1_auto;', base=true},
-	{'.flex-none', 'flex__none;', base=true},
+	{'.flex-1', 'flex: 1 1 0%;', base=true},
+	{'.flex-auto', 'flex: 1 1 auto;', base=true},
+	{'.flex-initial', 'flex: 0 1 auto;', base=true},
+	{'.flex-none', 'flex: none;', base=true},
 }

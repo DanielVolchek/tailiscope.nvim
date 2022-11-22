@@ -1,4 +1,4 @@
 return {
-	{'.box-border', 'box_sizing__border_box;', base=true},
-	{'.box-content', 'box_sizing__content_box;', base=true},
+	{'.box-border', 'box-sizing: border-box;', base=true},
+	{'.box-content', 'box-sizing: content-box;', base=true},
 }

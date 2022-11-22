@@ -1,6 +1,6 @@
 return {
-	{'.text-left', 'text_align__left;', base=true},
-	{'.text-center', 'text_align__center;', base=true},
-	{'.text-right', 'text_align__right;', base=true},
-	{'.text-justify', 'text_align__justify;', base=true},
+	{'.text-left', 'text-align: left;', base=true},
+	{'.text-center', 'text-align: center;', base=true},
+	{'.text-right', 'text-align: right;', base=true},
+	{'.text-justify', 'text-align: justify;', base=true},
 }

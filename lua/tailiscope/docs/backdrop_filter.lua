@@ -1,4 +1,4 @@
 return {
-	{'.backdrop-filter', '_webkit_backdrop_filter__var(__tw_backdrop_blur)_var(__tw_backdrop_brightness)_var(__tw_backdrop_contrast)_var(__tw_backdrop_grayscale)_var(__tw_backdrop_hue_rotate)_var(__tw_backdrop_invert)_var(__tw_backdrop_opacity)_var(__tw_backdrop_saturate)_var(__tw_backdrop_sepia); backdrop_filter__var(__tw_backdrop_blur)_var(__tw_backdrop_brightness)_var(__tw_backdrop_contrast)_var(__tw_backdrop_grayscale)_var(__tw_backdrop_hue_rotate)_var(__tw_backdrop_invert)_var(__tw_backdrop_opacity)_var(__tw_backdrop_saturate)_var(__tw_backdrop_sepia);', base=true},
-	{'.backdrop-filter-none', '_webkit_backdrop_filter__none; backdrop_filter__none;', base=true},
+	{'.backdrop-filter', '-webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);|backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);', base=true},
+	{'.backdrop-filter-none', '-webkit-backdrop-filter: none;|backdrop-filter: none;', base=true},
 }

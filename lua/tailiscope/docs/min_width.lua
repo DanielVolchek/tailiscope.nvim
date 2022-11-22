@@ -1,6 +1,6 @@
 return {
-	{'.min-w-0', 'min_width__0px;', base=true},
-	{'.min-w-full', 'min_width__100%;', base=true},
-	{'.min-w-min', 'min_width__min_content;', base=true},
-	{'.min-w-max', 'min_width__max_content;', base=true},
+	{'.min-w-0', 'min-width: 0px;', base=true},
+	{'.min-w-full', 'min-width: 100%;', base=true},
+	{'.min-w-min', 'min-width: min-content;', base=true},
+	{'.min-w-max', 'min-width: max-content;', base=true},
 }

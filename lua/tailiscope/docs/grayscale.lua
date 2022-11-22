@@ -1,4 +1,4 @@
 return {
-	{'.grayscale-0', '__tw_grayscale__grayscale(0);', base=true},
-	{'.grayscale', '__tw_grayscale__grayscale(100%);', base=true},
+	{'.grayscale-0', '--tw-grayscale: grayscale(0);', base=true},
+	{'.grayscale', '--tw-grayscale: grayscale(100%);', base=true},
 }

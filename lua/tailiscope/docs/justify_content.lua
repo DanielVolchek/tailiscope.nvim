@@ -1,8 +1,8 @@
 return {
-	{'.justify-start', 'justify_content__flex_start;', base=true},
-	{'.justify-end', 'justify_content__flex_end;', base=true},
-	{'.justify-center', 'justify_content__center;', base=true},
-	{'.justify-between', 'justify_content__space_between;', base=true},
-	{'.justify-around', 'justify_content__space_around;', base=true},
-	{'.justify-evenly', 'justify_content__space_evenly;', base=true},
+	{'.justify-start', 'justify-content: flex-start;', base=true},
+	{'.justify-end', 'justify-content: flex-end;', base=true},
+	{'.justify-center', 'justify-content: center;', base=true},
+	{'.justify-between', 'justify-content: space-between;', base=true},
+	{'.justify-around', 'justify-content: space-around;', base=true},
+	{'.justify-evenly', 'justify-content: space-evenly;', base=true},
 }

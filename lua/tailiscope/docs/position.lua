@@ -1,7 +1,7 @@
 return {
-	{'.static', 'position__static;', base=true},
-	{'.fixed', 'position__fixed;', base=true},
-	{'.absolute', 'position__absolute;', base=true},
-	{'.relative', 'position__relative;', base=true},
-	{'.sticky', 'position__sticky;', base=true},
+	{'.static', 'position: static;', base=true},
+	{'.fixed', 'position: fixed;', base=true},
+	{'.absolute', 'position: absolute;', base=true},
+	{'.relative', 'position: relative;', base=true},
+	{'.sticky', 'position: sticky;', base=true},
 }

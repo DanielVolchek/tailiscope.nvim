@@ -1,3 +1,3 @@
 return {
-	{'.appearance-none', 'appearance__none;', base=true},
+	{'.appearance-none', 'appearance: none;', base=true},
 }

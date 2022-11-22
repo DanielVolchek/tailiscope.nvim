@@ -1,4 +1,4 @@
 return {
-	{'.table-auto', 'table_layout__auto;', base=true},
-	{'.table-fixed', 'table_layout__fixed;', base=true},
+	{'.table-auto', 'table-layout: auto;', base=true},
+	{'.table-fixed', 'table-layout: fixed;', base=true},
 }

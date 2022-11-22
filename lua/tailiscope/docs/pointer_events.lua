@@ -1,4 +1,4 @@
 return {
-	{'.pointer-events-none', 'pointer_events__none;', base=true},
-	{'.pointer-events-auto', 'pointer_events__auto;', base=true},
+	{'.pointer-events-none', 'pointer-events: none;', base=true},
+	{'.pointer-events-auto', 'pointer-events: auto;', base=true},
 }

@@ -1,4 +1,4 @@
 return {
-	{'.italic', 'font_style__italic;', base=true},
-	{'.not-italic', 'font_style__normal;', base=true},
+	{'.italic', 'font-style: italic;', base=true},
+	{'.not-italic', 'font-style: normal;', base=true},
 }

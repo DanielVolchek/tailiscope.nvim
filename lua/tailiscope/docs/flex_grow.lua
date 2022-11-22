@@ -1,4 +1,4 @@
 return {
-	{'.flex-grow', 'flex_grow__1;', base=true},
-	{'.flex-grow-0', 'flex_grow__0;', base=true},
+	{'.flex-grow', 'flex-grow: 1;', base=true},
+	{'.flex-grow-0', 'flex-grow: 0;', base=true},
 }

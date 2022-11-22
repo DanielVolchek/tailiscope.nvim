@@ -1,7 +1,7 @@
 return {
-	{'.object-contain', 'object_fit__contain;', base=true},
-	{'.object-cover', 'object_fit__cover;', base=true},
-	{'.object-fill', 'object_fit__fill;', base=true},
-	{'.object-none', 'object_fit__none;', base=true},
-	{'.object-scale-down', 'object_fit__scale_down;', base=true},
+	{'.object-contain', 'object-fit: contain;', base=true},
+	{'.object-cover', 'object-fit: cover;', base=true},
+	{'.object-fill', 'object-fit: fill;', base=true},
+	{'.object-none', 'object-fit: none;', base=true},
+	{'.object-scale-down', 'object-fit: scale-down;', base=true},
 }

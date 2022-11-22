@@ -1,6 +1,6 @@
 return {
-	{'.bg-clip-border', 'background_clip__border_box;', base=true},
-	{'.bg-clip-padding', 'background_clip__padding_box;', base=true},
-	{'.bg-clip-content', 'background_clip__content_box;', base=true},
-	{'.bg-clip-text', '_webkit_background_clip__text; background_clip__text;', base=true},
+	{'.bg-clip-border', 'background-clip: border-box;', base=true},
+	{'.bg-clip-padding', 'background-clip: padding-box;', base=true},
+	{'.bg-clip-content', 'background-clip: content-box;', base=true},
+	{'.bg-clip-text', '-webkit-background-clip: text;|background-clip: text;', base=true},
 }

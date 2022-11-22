@@ -1,6 +1,6 @@
 return {
-	{'.auto-cols-auto', 'grid_auto_columns__auto;', base=true},
-	{'.auto-cols-min', 'grid_auto_columns__min_content;', base=true},
-	{'.auto-cols-max', 'grid_auto_columns__max_content;', base=true},
-	{'.auto-cols-fr', 'grid_auto_columns__minmax(0__1fr);', base=true},
+	{'.auto-cols-auto', 'grid-auto-columns: auto;', base=true},
+	{'.auto-cols-min', 'grid-auto-columns: min-content;', base=true},
+	{'.auto-cols-max', 'grid-auto-columns: max-content;', base=true},
+	{'.auto-cols-fr', 'grid-auto-columns: minmax(0, 1fr);', base=true},
 }

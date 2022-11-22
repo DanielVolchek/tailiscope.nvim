@@ -1,3 +1,3 @@
 return {
-	{'.stroke-current', 'stroke__currentcolor;', base=true},
+	{'.stroke-current', 'stroke: currentColor;', base=true},
 }

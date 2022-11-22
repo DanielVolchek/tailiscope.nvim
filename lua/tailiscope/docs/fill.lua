@@ -1,3 +1,3 @@
 return {
-	{'.fill-current', 'fill__currentcolor;', base=true},
+	{'.fill-current', 'fill: currentColor;', base=true},
 }

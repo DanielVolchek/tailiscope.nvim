@@ -1,5 +1,5 @@
 return {
-	{'.font-sans', 'font_family__ui_sans_serif__system_ui___apple_system__blinkmacsystemfont__"segoe_ui"__roboto__"helvetica_neue"__arial__"noto_sans"__sans_serif__"apple_color_emoji"__"segoe_ui_emoji"__"segoe_ui_symbol"__"noto_color_emoji";', base=true},
-	{'.font-serif', 'font_family__ui_serif__georgia__cambria__"times_new_roman"__times__serif;', base=true},
-	{'.font-mono', 'font_family__ui_monospace__sfmono_regular__menlo__monaco__consolas__"liberation_mono"__"courier_new"__monospace;', base=true},
+	{'.font-sans', 'font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";', base=true},
+	{'.font-serif', 'font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;', base=true},
+	{'.font-mono', 'font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;', base=true},
 }

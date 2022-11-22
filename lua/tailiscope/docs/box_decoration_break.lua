@@ -1,4 +1,4 @@
 return {
-	{'.decoration-slice', '_webkit_box_decoration_break__slice; box_decoration_break__slice;', base=true},
-	{'.decoration-clone', '_webkit_box_decoration_break__clone; box_decoration_break__clone;', base=true},
+	{'.decoration-slice', '-webkit-box-decoration-break: slice;|box-decoration-break: slice;', base=true},
+	{'.decoration-clone', '-webkit-box-decoration-break: clone;|box-decoration-break: clone;', base=true},
 }

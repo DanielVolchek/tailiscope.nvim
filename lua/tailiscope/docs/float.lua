@@ -1,5 +1,5 @@
 return {
-	{'.float-right', 'float__right;', base=true},
-	{'.float-left', 'float__left;', base=true},
-	{'.float-none', 'float__none;', base=true},
+	{'.float-right', 'float: right;', base=true},
+	{'.float-left', 'float: left;', base=true},
+	{'.float-none', 'float: none;', base=true},
 }

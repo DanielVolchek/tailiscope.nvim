@@ -1,4 +1,4 @@
 return {
-	{'.flex', 'display__flex;', base=true},
-	{'.inline-flex', 'display__inline_flex;', base=true},
+	{'.flex', 'display: flex;', base=true},
+	{'.inline-flex', 'display: inline-flex;', base=true},
 }

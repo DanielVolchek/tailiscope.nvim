@@ -1,5 +1,5 @@
 return {
-	{'.outline-none', 'outline__2px_solid_transparent; outline_offset__2px;', base=true},
-	{'.outline-white', 'outline__2px_dotted_white; outline_offset__2px;', base=true},
-	{'.outline-black', 'outline__2px_dotted_black; outline_offset__2px;', base=true},
+	{'.outline-none', 'outline: 2px solid transparent;|outline-offset: 2px;', base=true},
+	{'.outline-white', 'outline: 2px dotted white;|outline-offset: 2px;', base=true},
+	{'.outline-black', 'outline: 2px dotted black;|outline-offset: 2px;', base=true},
 }

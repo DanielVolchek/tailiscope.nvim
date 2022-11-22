@@ -1,5 +1,5 @@
 return {
-	{'.min-h-0', 'min_height__0px;', base=true},
-	{'.min-h-full', 'min_height__100%;', base=true},
-	{'.min-h-screen', 'min_height__100vh;', base=true},
+	{'.min-h-0', 'min-height: 0px;', base=true},
+	{'.min-h-full', 'min-height: 100%;', base=true},
+	{'.min-h-screen', 'min-height: 100vh;', base=true},
 }
