@@ -7,6 +7,9 @@ return require("telescope").register_extension({
 		opts = config
 	end,
 	exports = {
+		tailiscope = function()
+			require("tailiscope").picker("base", opts)
+		end,
 		base = function()
 			require("tailiscope").picker("base", opts)
 		end,

@@ -106,6 +106,5 @@ Last bits:
 - Descriptions! ✅
 - Add paste functionality ✅
 - Add multiselect option for classes ❌ (API not working ? could just be me being dumb)
-- Add opts
-- Add hook function
+- Add opts ✅
 - Clean everything up

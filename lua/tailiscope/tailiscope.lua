@@ -12,7 +12,7 @@ M.config = {
 	register = "a",
 	default = "base",
 	doc_icon = " ", -- icon or false
-	map = {
+	maps = {
 		i = {
 			back = "<C-h>",
 			open_doc = "<C-o>",
@@ -104,6 +104,7 @@ M.picker = function(filename, opts)
 	filename = filename or "base"
 	local results = require("tailiscope.docs." .. filename)
 	opts = opts or {}
+	opts["results_title"] = filename
 	pickers
 		.new(opts, {
 			previewer = previewer,
@@ -136,7 +137,7 @@ M.picker = function(filename, opts)
 			sorter = conf.generic_sorter(opts),
 			attach_mappings = function(prompt_bufnr, map)
 				-- back
-				map("n", M.config.map.n.open_doc, function()
+				map("n", M.config.maps.n.open_doc, function()
 					local selection = action_state.get_selected_entry()
 					if selection.value.doc then
 						open_doc(selection.value.doc, "")
@@ -156,9 +157,9 @@ M.picker = function(filename, opts)
 					return true
 				end
 
-				map("n", M.config.map.n.back, back)
+				map("n", M.config.maps.n.back, back)
 
-				map("i", M.config.map.i.back, back)
+				map("i", M.config.maps.i.back, back)
 
 				actions.select_default:replace(function()
 					actions.close(prompt_bufnr)
