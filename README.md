@@ -1,4 +1,4 @@
-# tailiscope-nvim
+# tailiscope.nvim
 
 Simple Telescope extension that mirrors the [nerdcave cheatsheet](https://nerdcave.com/tailwind-cheat-sheet)
 
