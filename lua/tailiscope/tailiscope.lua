@@ -4,10 +4,12 @@ local finders = require("telescope.finders")
 local previewers = require("telescope.previewers")
 local conf = require("telescope.config").values
 local actions = require("telescope.actions")
-local action_utils = require("telescope.actions.utils")
 local action_state = require("telescope.actions.state")
 
+local U = require("tailiscope.utils")
+
 M = {}
+
 M.config = {
 	register = "a",
 	default = "base",
@@ -22,70 +24,30 @@ M.config = {
 			open_doc = "od",
 		},
 	},
+	colors = {},
 }
 
-M.paste = function(value)
-	-- vim.notify("value is " .. value)
-	vim.fn.setreg(M.config.register, value)
-end
+M._highlights = {}
 
 -- https://stackoverflow.com/questions/295052/how-can-i-determine-the-os-of-the-system-from-within-a-lua-script
 -- I haven't tested this outside of osx but it should work
 
-local getOperatingSystem = function()
-	local BinaryFormat = package.cpath:match("%p[\\|/]?%p(%a+)")
-	if BinaryFormat == "dll" then
-		function os.name()
-			return "Windows"
-		end
-	elseif BinaryFormat == "so" then
-		function os.name()
-			return "Linux"
-		end
-	elseif BinaryFormat == "dylib" then
-		function os.name()
-			return "MacOS"
-		end
-	end
-	BinaryFormat = nil
-end
+M._history = {}
 
--- for classes
--- can't pass value with newlines so instead we split by char | in previewer
--- split string by delimiter
-local split_string = function(str, char)
-	local t = {}
-	for i in string.gmatch(str, "([^" .. char .. "]+)") do
-		table.insert(t, i)
-	end
-	return t
-end
-
-local open_doc = function(docfile, path)
-	path = path or "https://tailwindcss.com/docs/"
-	docfile = docfile or "index"
-	local prefix = 'open "'
-	local _os = getOperatingSystem()
-	if _os == "Windows" then
-		prefix = 'start "'
-	elseif _os == "Linux" then
-		prefix = 'xdg-open "'
-	end
-	local command = prefix .. path .. docfile .. '"'
-	os.execute(command)
-end
-
-local history = {}
-
-local previewer = previewers.new_buffer_previewer({
-	define_preview = function(self, entry, status)
+M.previewer = previewers.new_buffer_previewer({
+	-- previewer is generated from the same object we would require (unless we have class)
+	define_preview = function(self, entry)
 		local bufnr = self.state.bufnr
+		local values = {}
+		-- base in this case refers to a lowest level function with css instead of a sub item sheet
 		if entry.value.base then
-			vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, split_string(entry.value[2], "|"))
+			-- split the css definition by |
+			values = U.split_string(entry.value[2], "|")
 		else
+			-- otherwise we get the subitem and write it into the preview buffer
 			local table_results = require("tailiscope.docs." .. entry.value[2])
-			local values = {}
 
+			-- desc appears on 2nd level (aka layout -> breakpoints)
 			if entry.value["desc"] then
 				table.insert(values, entry.value.desc)
 				table.insert(values, "")
@@ -95,8 +57,8 @@ local previewer = previewers.new_buffer_previewer({
 			for _, v in ipairs(table_results) do
 				table.insert(values, v[1])
 			end
-			vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, values)
 		end
+		vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, values)
 	end,
 })
 
@@ -107,7 +69,7 @@ M.picker = function(filename, opts)
 	opts["results_title"] = filename
 	pickers
 		.new(opts, {
-			previewer = previewer,
+			previewer = M.previewer,
 			prompt_title = "Search",
 			results_title = filename,
 			finder = finders.new_table({
@@ -115,6 +77,8 @@ M.picker = function(filename, opts)
 				entry_maker = function(entry)
 					local display = entry[1]
 					-- if the entry has documentation online, show it with a configurable icon
+					-- afaik this only applies to the container subclass
+					-- It's probably better to change this in the build script so we don't check every time
 					if entry[1] == " " then
 						display = "<BLANK>"
 					end
@@ -134,25 +98,26 @@ M.picker = function(filename, opts)
 				height = 0.75,
 			},
 
+			-- may include the requires within the search in the future
+			-- also maybe set that to optional since it would likely slow it down requiring every file all at once to search
 			sorter = conf.generic_sorter(opts),
+
 			attach_mappings = function(prompt_bufnr, map)
-				-- back
+				-- open the documentation for the class if it has doc_icon next to the name
 				map("n", M.config.maps.n.open_doc, function()
 					local selection = action_state.get_selected_entry()
 					if selection.value.doc then
-						open_doc(selection.value.doc, "")
+						U.open_doc(selection.value.doc, "")
 					end
 
 					return true
 				end)
 
-				-- back functionality
-
+				-- go back in history
 				local back = function()
-					if next(history) ~= nil then
+					if next(M._history) ~= nil then
 						actions.close(prompt_bufnr)
-						vim.notify(vim.inspect(history))
-						M.picker(table.remove(history), opts)
+						M.picker(table.remove(M._history), opts)
 					end
 					return true
 				end
@@ -161,22 +126,19 @@ M.picker = function(filename, opts)
 
 				map("i", M.config.maps.i.back, back)
 
+				-- enter
 				actions.select_default:replace(function()
 					actions.close(prompt_bufnr)
 					local selection = action_state.get_selected_entry()
+					-- if entry is base (aka class) copy to register
+					-- the naming convention is a bit weird since I have base as both the lowest for classes and the highest for categories
+					-- I'll fix that later
 					if selection.value.base then
-						-- get multiselection if applicable and pass to paste
-						-- not sure why this isn't working I must be doing something wrong
-						-- local results = {}
-						--
-						-- local current_picker = action_state.get_current_picker(prompt_bufnr)
-						-- action_utils.map_selections(prompt_bufnr, function(entry, index)
-						-- 	table.insert(results, entry.value[1])
-						-- end)
-
-						M.paste(selection.value[1])
+						-- TODO add multiselect support to copy multiple classes to buffer
+						U.paste(selection.value[1])
 					else
-						table.insert(history, filename)
+						-- otherwise recursively open entry
+						table.insert(M._history, filename)
 						M.picker(selection.value[2], opts)
 					end
 				end)

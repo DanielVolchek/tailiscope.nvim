@@ -108,3 +108,10 @@ Last bits:
 - Add multiselect option for classes ❌ (API not working ? could just be me being dumb)
 - Add opts ✅
 - Clean everything up
+
+## Future update
+
+- Match regex for colors and set highlight if the regex matches
+- Get a list of default colors from tailwind docs, also check tailwind config for alternate colors
+
+((.+-)(red-|blue-|indigo-|cool-gray-|pink-|yellow-|teal-|gray-|orange-|green-|purple-)(50|100|200|300|400|500|600|700|800|900))

@@ -10,9 +10,6 @@ return require("telescope").register_extension({
 		tailiscope = function()
 			require("tailiscope").picker("base", opts)
 		end,
-		base = function()
-			require("tailiscope").picker("base", opts)
-		end,
 		categories = function()
 			require("tailiscope").picker("categories", opts)
 		end,

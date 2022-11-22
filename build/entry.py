@@ -1,3 +1,7 @@
+# if anyone knows why this is super slow and wants to fix it be my guest
+# its not a big deal since it rarely ever needs to run but all code improvement is good code improvement
+
+
 import os
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -28,6 +32,8 @@ for b in btns:
 
 
 items = []
+
+# most of the lag comes from right here
 for c in containers:
     category = c.find_element(By.CSS_SELECTOR, 'header > h2').text
     items.append({'name': category, 'items': []})
@@ -52,8 +58,6 @@ for c in containers:
                 'name': tds[0].text,
                 'value': value,
             })
-# write files
-
 
 def replace_char(str):
     chars = [" ", "-", ":", ",", "/"]
@@ -68,21 +72,29 @@ def replace_char(str):
 
 
 def recursive_write(name, items):
+
+    # path of the file to write to passed in before hand
+    # i.e breakpoint.lua file should have the classes contained in breakpoint category
     path = os.path.join(doc_path, replace_char(name)+".lua")
     with open(path, "w+") as f:
         f.write('return {\n')
         for item in items:
             writeTo = [f, all_file]
             value = ""
+            # if the item has subitems we run the function again
             if item.get('items') is not None:
                 recursive_write(item['name'], item['items'])
                 value = "'%s'" % replace_char(item['name'])
+            # otherwise we have a class and write the class name + the css
+            # replace the \n with | so we can split it in lua
             else:
                 value = "'%s', base=true" % item['value'].replace('\n', "|")
                 writeTo.append(classes_file)
+            # if we have a doc link we write it to the file as well
             if item.get('doc') is not None:
                 value += ", doc='%s'" % item['doc']
                 writeTo.append(category_file)
+            # if we have a description we write it to the file as well
             if item.get('desc') is not None:
                 value += ", desc='%s'" % item['desc'].replace('\'', '\\\'')
             write = "\t{'%s', %s},\n" % (item['name'], value)
@@ -91,12 +103,14 @@ def recursive_write(name, items):
         f.write('}')
 
 
-all_file.write("return {\n")
-classes_file.write("return {\n")
-category_file.write("return {\n")
+writeTo = [all_file, category_file, classes_file]
+
+for w in writeTo:
+    w.write('return {\n')
+
 recursive_write('base', items)
-all_file.write("}")
-classes_file.write("}")
-category_file.write("}")
+
+for w in writeTo:
+    w.write('}')
 
 print("done")
