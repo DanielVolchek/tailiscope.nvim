@@ -1,23 +1,24 @@
 local opts = {}
+local tailiscope = require("tailiscope")
 
 return require("telescope").register_extension({
 	setup = function(ext_config, config)
 		-- access extension config and user config
-		require("tailiscope").config = vim.tbl_deep_extend("force", M.config, ext_config)
+		tailiscope.config = vim.tbl_deep_extend("force", M.config, ext_config)
 		opts = config
 	end,
 	exports = {
 		tailiscope = function()
-			require("tailiscope").picker("base", opts)
+			tailiscope.picker(tailiscope.config.default, opts)
 		end,
 		categories = function()
-			require("tailiscope").picker("categories", opts)
+			tailiscope.picker("categories", opts)
 		end,
 		classes = function()
-			require("tailiscope").picker("classes", opts)
+			tailiscope.picker("classes", opts)
 		end,
 		all = function()
-			require("tailiscope").picker("all", opts)
+			tailiscope.picker("all", opts)
 		end,
 	},
 })

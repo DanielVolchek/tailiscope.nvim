@@ -44,6 +44,7 @@ end
 -- set highlights from config table return list of highlights
 U.set_highlight = function(colors) end
 
+-- in progress
 -- check regex, if color matches, return correct highlight
 U.get_highlight = function(str, colors, highlights)
 	print("str is " .. str)
@@ -59,7 +60,5 @@ U.paste = function(value)
 	-- vim.notify("value is " .. value)
 	vim.fn.setreg(M.config.register, value)
 end
-
-U.get_highlight("text-yellow-400", {}, {})
 
 return U
