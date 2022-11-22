@@ -56,7 +56,10 @@ U.get_highlight = function(str, colors, highlights)
 	return regex:match_str(str)
 end
 
-U.paste = function(value)
+U.paste = function(value, no_dot)
+	if no_dot then
+		value = value:gsub("^.", "")
+	end
 	-- vim.notify("value is " .. value)
 	vim.fn.setreg(M.config.register, value)
 end

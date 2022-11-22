@@ -14,6 +14,7 @@ M.config = {
 	register = "a",
 	default = "base",
 	doc_icon = " ", -- icon or false
+	no_dot = true,
 	maps = {
 		i = {
 			back = "<C-h>",
@@ -135,7 +136,7 @@ M.picker = function(filename, opts)
 					-- I'll fix that later
 					if selection.value.base then
 						-- TODO add multiselect support to copy multiple classes to buffer
-						U.paste(selection.value[1])
+						U.paste(selection.value[1], M.config.no_dot)
 					else
 						-- otherwise recursively open entry
 						table.insert(M._history, filename)
