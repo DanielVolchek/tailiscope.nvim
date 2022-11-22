@@ -4,6 +4,22 @@ Simple Telescope extension that mirrors the [nerdcave cheatsheet](https://nerdca
 
 ## Demo
 
+### Search through lists and copy what you need
+
+![](https://github.com/DanielVolchek/tailiscope-media/blob/main/gifs/main.gif)
+
+### Go back between history
+
+![](https://github.com/DanielVolchek/tailiscope-media/blob/main/gifs/back.gif)
+
+### Open Docs
+
+![](https://github.com/DanielVolchek/tailiscope-media/blob/main/gifs/docs.gif)
+
+### Search through everything
+
+![](https://github.com/DanielVolchek/tailiscope-media/blob/main/gifs/all.gif)
+
 ## Setup
 
 ```lua
@@ -58,6 +74,7 @@ If you would like to open a searchable list of only classes when using :Telescop
 
 ## Future update features
 
+- Maintain search when going back through history
 - Support multiselect to copy multiple classes to register
 - Even possibly multiselect to open lists of lists together
 - Match regex for colors and set highlight if the regex matches
