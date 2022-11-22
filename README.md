@@ -100,12 +100,12 @@ leaning towards 2 rn so we can have better checking for doc and classname
 
 Last bits:
 
-- Full lists of all classes to search through
-- Full lists of all categories to search through
-- Fix CSS displaying newlines with replaced characters
-- Descriptions!
-- Add paste functionality
+- Full lists of all classes to search through ✅
+- Full lists of all categories to search through ✅
+- Fix CSS displaying newlines with replaced characters ✅
+- Descriptions! ✅
+- Add paste functionality ✅
+- Add multiselect option for classes ❌ (API not working ? could just be me being dumb)
 - Add opts
 - Add hook function
-- Add multiselect option for classes
 - Clean everything up
