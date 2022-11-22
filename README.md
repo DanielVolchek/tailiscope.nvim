@@ -53,6 +53,7 @@ if client.name == "tailwindcss" then
 ### Useful changes
 
 If you would like to set result to default register, set register = '"'
+
 If you would like to open a searchable list of only classes when using :Telescope tailiscope command set default = "classes"
 
 ## Future update features
