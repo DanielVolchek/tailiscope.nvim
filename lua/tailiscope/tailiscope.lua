@@ -4,12 +4,29 @@ local finders = require("telescope.finders")
 local previewers = require("telescope.previewers")
 local conf = require("telescope.config").values
 local actions = require("telescope.actions")
+local action_utils = require("telescope.actions.utils")
 local action_state = require("telescope.actions.state")
 
-_G.tailiscope_config = tailiscope_config or {}
+M = {}
+M.config = {
+	register = "a",
+	default = "base",
+	doc_icon = " ", -- icon or false
+	map = {
+		i = {
+			back = "<C-h>",
+			open_doc = "<C-o>",
+		},
+		n = {
+			back = "b",
+			open_doc = "od",
+		},
+	},
+}
 
-_G.paste = function(value)
+M.paste = function(value)
 	-- vim.notify("value is " .. value)
+	vim.fn.setreg(M.config.register, value)
 end
 
 -- https://stackoverflow.com/questions/295052/how-can-i-determine-the-os-of-the-system-from-within-a-lua-script
@@ -33,6 +50,8 @@ local getOperatingSystem = function()
 	BinaryFormat = nil
 end
 
+-- for classes
+-- can't pass value with newlines so instead we split by char | in previewer
 -- split string by delimiter
 local split_string = function(str, char)
 	local t = {}
@@ -62,11 +81,18 @@ local previewer = previewers.new_buffer_previewer({
 	define_preview = function(self, entry, status)
 		local bufnr = self.state.bufnr
 		if entry.value.base then
-			vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { entry.value[2] })
+			vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, split_string(entry.value[2], "|"))
 		else
 			local table_results = require("tailiscope.docs." .. entry.value[2])
 			local values = {}
-			for i, v in ipairs(table_results) do
+
+			if entry.value["desc"] then
+				table.insert(values, entry.value.desc)
+				table.insert(values, "")
+				table.insert(values, "Classes: ")
+			end
+
+			for _, v in ipairs(table_results) do
 				table.insert(values, v[1])
 			end
 			vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, values)
@@ -74,7 +100,7 @@ local previewer = previewers.new_buffer_previewer({
 	end,
 })
 
-local picker = function(filename, opts)
+M.picker = function(filename, opts)
 	filename = filename or "base"
 	local results = require("tailiscope.docs." .. filename)
 	opts = opts or {}
@@ -87,8 +113,12 @@ local picker = function(filename, opts)
 				results = results,
 				entry_maker = function(entry)
 					local display = entry[1]
-					if entry.doc then
-						display = " " .. display
+					-- if the entry has documentation online, show it with a configurable icon
+					if entry[1] == " " then
+						display = "<BLANK>"
+					end
+					if entry.doc and M.config.doc_icon then
+						display = M.config.doc_icon .. display
 					end
 					return {
 						value = entry,
@@ -105,7 +135,8 @@ local picker = function(filename, opts)
 
 			sorter = conf.generic_sorter(opts),
 			attach_mappings = function(prompt_bufnr, map)
-				map("n", "od", function()
+				-- back
+				map("n", M.config.map.n.open_doc, function()
 					local selection = action_state.get_selected_entry()
 					if selection.value.doc then
 						open_doc(selection.value.doc, "")
@@ -120,23 +151,32 @@ local picker = function(filename, opts)
 					if next(history) ~= nil then
 						actions.close(prompt_bufnr)
 						vim.notify(vim.inspect(history))
-						recursive_picker(table.remove(history))
+						M.picker(table.remove(history), opts)
 					end
 					return true
 				end
 
-				map("n", "b", back)
+				map("n", M.config.map.n.back, back)
 
-				map("i", "<c-b>", back)
+				map("i", M.config.map.i.back, back)
 
 				actions.select_default:replace(function()
 					actions.close(prompt_bufnr)
 					local selection = action_state.get_selected_entry()
 					if selection.value.base then
-						paste(selection.value[1])
+						-- get multiselection if applicable and pass to paste
+						-- not sure why this isn't working I must be doing something wrong
+						-- local results = {}
+						--
+						-- local current_picker = action_state.get_current_picker(prompt_bufnr)
+						-- action_utils.map_selections(prompt_bufnr, function(entry, index)
+						-- 	table.insert(results, entry.value[1])
+						-- end)
+
+						M.paste(selection.value[1])
 					else
 						table.insert(history, filename)
-						recursive_picker(selection.value[2])
+						M.picker(selection.value[2], opts)
 					end
 				end)
 				return true
@@ -145,10 +185,4 @@ local picker = function(filename, opts)
 		:find()
 end
 
-_G.recursive_picker = function(filename)
-	filename = filename or "base"
-	picker(filename, {})
-end
-
--- recursive_picker("base")
-return picker
+return M
