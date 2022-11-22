@@ -4,19 +4,19 @@ Simple Telescope extension that mirrors the [nerdcave cheatsheet](https://nerdca
 
 ## Demo
 
-### Search through lists and copy what you need
+### Search through lists and copy what you need:
 
 ![](https://github.com/DanielVolchek/tailiscope-media/blob/main/gifs/main.gif)
 
-### Go back between history
+### Go back between history:
 
 ![](https://github.com/DanielVolchek/tailiscope-media/blob/main/gifs/back.gif)
 
-### Open Docs
+### Open Docs:
 
 ![](https://github.com/DanielVolchek/tailiscope-media/blob/main/gifs/docs.gif)
 
-### Search through everything
+### Search through everything:
 
 ![](https://github.com/DanielVolchek/tailiscope-media/blob/main/gifs/all.gif)
 
