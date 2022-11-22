@@ -132,13 +132,13 @@ M.picker = function(filename, opts)
 					actions.close(prompt_bufnr)
 					local selection = action_state.get_selected_entry()
 					-- if entry is base (aka class) copy to register
-					-- the naming convention is a bit weird since I have base as both the lowest for classes and the highest for categories
+					-- the naming convention is a bit weird since I have base as both the lowest for classes in the objs and the highest for categories as a picker
 					-- I'll fix that later
 					if selection.value.base then
 						-- TODO add multiselect support to copy multiple classes to buffer
 						U.paste(selection.value[1], M.config.no_dot)
 					else
-						-- otherwise recursively open entry
+						-- if entry is not base recursively open entry
 						table.insert(M._history, filename)
 						M.picker(selection.value[2], opts)
 					end
