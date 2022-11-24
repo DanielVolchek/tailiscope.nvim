@@ -9,8 +9,9 @@ end
 return require("telescope").register_extension({
 	setup = function(ext_config, config)
 		-- access extension config and user config
-		tailiscope.config = vim.tbl_deep_extend("force", tailiscope.config, ext_config)
+
 		tailiscope.config = vim.tbl_deep_extend("force", tailiscope.config, config)
+		tailiscope.config = vim.tbl_deep_extend("force", tailiscope.config, ext_config)
 	end,
 	-- Should I clear history here?
 	exports = {
