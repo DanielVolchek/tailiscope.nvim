@@ -83,8 +83,8 @@ M.picker = function(filename, opts)
 					if entry[1] == " " then
 						display = "<BLANK>"
 					end
-					if entry.doc and M.config.doc_icon then
-						display = M.config.doc_icon .. display
+					if entry.doc and opts.doc_icon then
+						display = opts.doc_icon .. display
 					end
 					return {
 						value = entry,
@@ -105,7 +105,7 @@ M.picker = function(filename, opts)
 
 			attach_mappings = function(prompt_bufnr, map)
 				-- open the documentation for the class if it has doc_icon next to the name
-				local open_doc = function ()
+				local open_doc = function()
 					local selection = action_state.get_selected_entry()
 					if selection.value.doc then
 						U.open_doc(selection.value.doc, "")
@@ -113,8 +113,8 @@ M.picker = function(filename, opts)
 					return true
 				end
 
-				map("n", M.config.maps.n.open_doc, open_doc)
-				map("i", M.config.maps.i.open_doc, open_doc)
+				map("n", opts.maps.n.open_doc, open_doc)
+				map("i", opts.maps.i.open_doc, open_doc)
 
 				-- go back in history
 				local back = function()
@@ -125,8 +125,8 @@ M.picker = function(filename, opts)
 					return true
 				end
 
-				map("n", M.config.maps.n.back, back)
-				map("i", M.config.maps.i.back, back)
+				map("n", opts.maps.n.back, back)
+				map("i", opts.maps.i.back, back)
 
 				-- enter
 				actions.select_default:replace(function()
@@ -137,7 +137,7 @@ M.picker = function(filename, opts)
 					-- I'll fix that later
 					if selection.value.base then
 						-- TODO add multiselect support to copy multiple classes to buffer
-						U.paste(selection.value[1], M.config.no_dot)
+						U.paste(selection.value[1], opts.no_dot)
 					else
 						-- if entry is not base recursively open entry
 						table.insert(M._history, filename)

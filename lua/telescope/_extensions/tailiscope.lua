@@ -1,29 +1,34 @@
-local opts = {}
 local tailiscope = require("tailiscope")
+
+local openPicker = function(picker, opts)
+	opts = opts or {}
+	opts = vim.tbl_deep_extend("force", tailiscope.config, opts)
+	tailiscope.picker(picker, opts)
+end
 
 return require("telescope").register_extension({
 	setup = function(ext_config, config)
 		-- access extension config and user config
 		tailiscope.config = vim.tbl_deep_extend("force", tailiscope.config, ext_config)
-		opts = config
+		tailiscope.config = vim.tbl_deep_extend("force", tailiscope.config, config)
 	end,
 	-- Should I clear history here?
 	exports = {
-		tailiscope = function()
+		tailiscope = function(opts)
 			-- tailiscope.history = {}
-			tailiscope.picker(tailiscope.config.default, opts)
+			openPicker(tailiscope.config.default, opts)
 		end,
-		base = function()
-			tailiscope.picker("base", opts)
+		base = function(opts)
+			openPicker("base", opts)
 		end,
-		categories = function()
-			tailiscope.picker("categories", opts)
+		categories = function(opts)
+			openPicker("categories", opts)
 		end,
-		classes = function()
-			tailiscope.picker("classes", opts)
+		classes = function(opts)
+			openPicker("classes", opts)
 		end,
-		all = function()
-			tailiscope.picker("all", opts)
+		all = function(opts)
+			openPicker("all", opts)
 		end,
 	},
 })
