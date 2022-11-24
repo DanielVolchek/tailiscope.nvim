@@ -105,14 +105,16 @@ M.picker = function(filename, opts)
 
 			attach_mappings = function(prompt_bufnr, map)
 				-- open the documentation for the class if it has doc_icon next to the name
-				map("n", M.config.maps.n.open_doc, function()
+				local open_doc = function ()
 					local selection = action_state.get_selected_entry()
 					if selection.value.doc then
 						U.open_doc(selection.value.doc, "")
 					end
-
 					return true
-				end)
+				end
+
+				map("n", M.config.maps.n.open_doc, open_doc)
+				map("i", M.config.maps.i.open_doc, open_doc)
 
 				-- go back in history
 				local back = function()
@@ -124,7 +126,6 @@ M.picker = function(filename, opts)
 				end
 
 				map("n", M.config.maps.n.back, back)
-
 				map("i", M.config.maps.i.back, back)
 
 				-- enter

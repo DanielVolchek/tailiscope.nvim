@@ -3,17 +3,11 @@ U = {}
 local getOperatingSystem = function()
 	local BinaryFormat = package.cpath:match("%p[\\|/]?%p(%a+)")
 	if BinaryFormat == "dll" then
-		function os.name()
-			return "Windows"
-		end
+		return "Windows"
 	elseif BinaryFormat == "so" then
-		function os.name()
-			return "Linux"
-		end
+		return "Linux"
 	elseif BinaryFormat == "dylib" then
-		function os.name()
-			return "MacOS"
-		end
+		return "MacOS"
 	end
 	BinaryFormat = nil
 end
@@ -22,13 +16,15 @@ U.open_doc = function(docfile, path)
 	path = path or "https://tailwindcss.com/docs/"
 	docfile = docfile or "index"
 	local prefix = 'open "'
+	local suffix = '"'
 	local _os = getOperatingSystem()
 	if _os == "Windows" then
-		prefix = 'start "'
+		prefix = 'start '
+		suffix = ''
 	elseif _os == "Linux" then
 		prefix = 'xdg-open "'
 	end
-	local command = prefix .. path .. docfile .. '"'
+	local command = prefix .. path .. docfile .. suffix
 	os.execute(command)
 end
 
