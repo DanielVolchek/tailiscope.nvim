@@ -2,6 +2,8 @@
 
 Simple Telescope extension that mirrors the [nerdcave cheatsheet](https://nerdcave.com/tailwind-cheat-sheet)
 
+Help maintain development flow within Neovim while using Tailwind CSS
+
 ## Demo
 
 ### Search through lists and copy what you need:
