@@ -3,10 +3,13 @@ U = {}
 local getOperatingSystem = function()
 	local BinaryFormat = package.cpath:match("%p[\\|/]?%p(%a+)")
 	if BinaryFormat == "dll" then
-		return "Windows"
-	elseif BinaryFormat == "so" then
-		return "Linux"
-	elseif BinaryFormat == "dylib" then
+		function os.name()
+			return "Windows"
+		end
+	else
+		if vim.loop.os_uname().sysname ~= "Darwin" then
+			return "Linux"
+		end
 		return "MacOS"
 	end
 	BinaryFormat = nil
@@ -19,8 +22,8 @@ U.open_doc = function(docfile, path)
 	local suffix = '"'
 	local _os = getOperatingSystem()
 	if _os == "Windows" then
-		prefix = 'start '
-		suffix = ''
+		prefix = "start "
+		suffix = ""
 	elseif _os == "Linux" then
 		prefix = 'xdg-open "'
 	end
