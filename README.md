@@ -80,6 +80,43 @@ If you would like to set result to default register, set register = '"'
 
 If you would like to open a searchable list of only classes when using :Telescope tailiscope command set default = "classes"
 
+## Multi Select proposal
+
+Here is come config for telescope that would allow you to choose multiple classes from the same list and add them to the value yanked in the register
+
+```lua
+
+function tailwind_multiselect(prompt_bufnr)
+    local picker = action_state.get_current_picker(prompt_bufnr)
+    local num_selections = table.getn(picker:get_multi_selection())
+    entries_to_add = {}
+
+    local picker = action_state.get_current_picker(prompt_bufnr)
+    for _, entry in ipairs(picker:get_multi_selection()) do
+        class = string.gsub(entry.display, "^\\.", "")
+        table.insert(entries_to_add, class)
+    end
+    entries_to_add = table.concat(entries_to_add, " ")
+    vim.fn.setreg("*", entries_to_add)
+end
+
+require('telescope').setup {
+  defaults = {
+    mappings = {
+          n = {
+        ['<c-space>'] = tailwind_multiselect,
+      }
+    },
+  }
+}
+```
+
+Doesn't work over multiple lists if you go back with <C-h>
+yank into system clipboard register '*'
+remove leading dot '^.'
+
+Maybe we can make it work over multiples categories ?
+
 ## Future update features
 
 - Maintain search when going back through history
